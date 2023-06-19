@@ -1,0 +1,44 @@
+nav {
+    background-color: #f1f1f1f1;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+button, a {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+button:hover, a:hover{
+    color: #666;
+}
+
+.search-container {
+    margin-top: 10px;
+}
+
+.search-container input[type="text"]{
+padding: 5px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+}
+
