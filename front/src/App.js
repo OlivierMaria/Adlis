@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar.js";
 import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
 import Login from "./pages/Login.js";
+import Footer from "./components/Footer.js";
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+
+      <Footer/>
+
     </BrowserRouter>
   );
 };
