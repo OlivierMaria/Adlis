@@ -1,10 +1,22 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   return (
-    <div className="search-container">
-      <input type="text" placeholder="Rechercher..." />
-    </div>
+    <form
+      className="searchForm"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <label htmlFor="search"></label>
+      <input
+        id="search"
+        type="text"
+        role="searchbox"
+        placeholder="Trouve ton livre.."
+        onChange={(e) => onSearch(e.target.value)}
+      />
+    </form>
   );
 };
 
