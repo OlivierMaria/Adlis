@@ -1,0 +1,38 @@
+.centered-input input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    margin-right: 400px;
+  }
+  
+  .centered-input button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .centered-input input:focus {
+    border-color: #007bff;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+  }
+  
+  .row > * {
+    flex-basis: 16.666%;
+  }
+
+  .row p {
+    text-align: center;
+  }
