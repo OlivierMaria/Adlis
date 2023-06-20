@@ -6,6 +6,7 @@ import React from "react";
 import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
 import Login from "./pages/Login.js";
+import Profil from "./pages/Profil.js";
 import Footer from "./components/Footer.js";
 
 const App = () => {
@@ -17,11 +18,10 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="books" element={<Books />} />
         <Route path="login" element={<Login />} />
+        <Route path="profil" element={<Profil />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
-
-      <Footer/>
-
+      <Footer />
     </BrowserRouter>
   );
 };
