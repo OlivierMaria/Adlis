@@ -9,10 +9,11 @@ import Login from "./pages/Login.js";
 import Profil from "./pages/Profil.js";
 import Footer from "./components/Footer.js";
 import SignUp from "./pages/SignUp.js";
+import LogOut from "./components/LogOut.js";
 
 const App = () => {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/logout" element={<LogOut />} />
       </Routes>
 
       <Footer />
