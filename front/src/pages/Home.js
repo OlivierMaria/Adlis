@@ -16,9 +16,7 @@ const Home = () => {
     if (searchTerm.trim() !== "") {
       // If search term is not empty
       const baseUrl = "https://www.googleapis.com/books/v1/volumes";
-      const url = `${baseUrl}?q=${encodeURIComponent(
-        searchTerm
-      )}&key=AIzaSyB4EoQJB44Ys7oF9V2MB377tJjERIRkVsg`; // Replace "YOUR_API_KEY" with your own API key
+      const url = `${baseUrl}?q=${encodeURIComponent(searchTerm)}&key=`; // Replace "YOUR_API_KEY" with your own API key
       axios
         .get(url)
         .then((response) => {
