@@ -21,7 +21,7 @@
 
 # Ignore pidfiles, but keep the directory.
 
-/tmp/pids/\*
+/tmp/pids/
 !/tmp/pids/
 !/tmp/pids/.keep
 
@@ -35,5 +35,6 @@
 
 # Ignore master key for decrypting credentials and more.
 
+/tmp/cache/bootsnap/
 /config/master.key
 .env
