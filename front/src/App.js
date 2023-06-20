@@ -6,13 +6,12 @@ import React from "react";
 import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
 import Login from "./pages/Login.js";
-import Profil from "./pages/Profil.js";
 import Footer from "./components/Footer.js";
 import SignUp from "./pages/SignUp.js";
 
 const App = () => {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />

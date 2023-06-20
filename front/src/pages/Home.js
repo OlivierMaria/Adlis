@@ -16,16 +16,41 @@ const Home = () => {
     if (searchTerm.trim() !== "") {
       // If search term is not empty
       const baseUrl = "https://www.googleapis.com/books/v1/volumes";
-      const url = `${baseUrl}?q=${encodeURIComponent(searchTerm)}&key=`; // Replace "YOUR_API_KEY" with your own API key
-      axios
-        .get(url)
-        .then((response) => {
-          console.log(response.data); // Log the response data to the console
-          setBooks(response.data.items); // Update the books state with the fetched data
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const maxResults = 20; // Maximum number of results per page (you can adjust this value)
+      let startIndex = 0; // Start index for the first page
+
+      // Array to store all fetched books
+      let allBooks = [];
+
+      const fetchBooks = () => {
+        const url = `${baseUrl}?q=${encodeURIComponent(
+          searchTerm
+        )}&startIndex=${startIndex}&maxResults=${maxResults}&key=AIzaSyB4EoQJB44Ys7oF9V2MB377tJjERIRkVsg`; // Replace "YOUR_API_KEY" with your own API key
+
+        axios
+          .get(url)
+          .then((response) => {
+            console.log(response.data); // Log the response data to the console
+            const books = response.data.items || []; // Get the array of books from the response
+
+            allBooks = [...allBooks, ...books]; // Append the fetched books to the existing array
+
+            const totalItems = response.data.totalItems || 0; // Get the total number of items
+
+            // If there are more books to fetch, increase the startIndex and fetch the next page
+            if (allBooks.length < totalItems) {
+              startIndex += maxResults;
+              fetchBooks();
+            } else {
+              setBooks(allBooks); // Update the books state with all fetched books
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+
+      fetchBooks(); // Start fetching books
     } else {
       setBooks([]); // Reset books state if search term is empty
     }

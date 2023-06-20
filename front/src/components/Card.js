@@ -11,8 +11,7 @@ const Card = ({ book }) => {
           alt={book?.title}
           className="card-image"
         />
-        <p>Auteur: {book?.volumeInfo?.authors}</p>
-        <p>Description: {book?.volumeInfo?.description}</p>
+        <button>J'y vais !</button>
       </div>
     </div>
   );
