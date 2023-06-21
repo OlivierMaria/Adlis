@@ -5,10 +5,12 @@ import Home from "./pages/Home.js";
 import React from "react";
 import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
-import Login from "./pages/Login.js";
+import Login from "./pages/LoginPage.js";
 import Footer from "./components/Footer.js";
 import SignUp from "./pages/SignUp.js";
 import LogOut from "./components/LogOut.js";
+import Dropdown from "./components/Dropdown.js";
+import LoginPage from "./pages/LoginPage.js";
 
 const App = () => {
   return (
@@ -18,10 +20,11 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="books" element={<Books />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/logout" element={<LogOut />} />
+        <Route path="/dropdown" element={<Dropdown />} />
       </Routes>
 
       <Footer />
