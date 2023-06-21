@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 import React from "react";
-import { FaUser, FaBook } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 import logoImg from "../assets/img/logo.png";
+import Dropdown from "./Dropdown.js";
 
 const Navbar = () => {
   return (
@@ -36,9 +37,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login">
-                <FaUser />
-              </Link>
+              <Dropdown />
             </li>
           </ul>
         </div>
