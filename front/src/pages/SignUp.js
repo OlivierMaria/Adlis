@@ -17,13 +17,11 @@ const SignUp = () => {
       data: userData,
     })
       .then((res) => {
-        if (res.status === 200) {
-          const { token, user } = res.data;
-          localStorage.setItem("token", token);
-          localStorage.setItem("user_id", JSON.stringify(user));
-          localStorage.setItem("session_id", JSON.stringify(user));
-          console.log(token);
-        }
+        const { token, username, user_id, session_id } = res.data;
+        localStorage.setItem("X-Session-Token", token);
+        localStorage.setItem("user_id", JSON.stringify(user_id));
+        localStorage.setItem("username", JSON.stringify(username));
+        localStorage.setItem("session_id", JSON.stringify(session_id));
       })
       .catch((error) => {
         console.log(error.response.status);

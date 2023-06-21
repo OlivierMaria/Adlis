@@ -8,6 +8,8 @@ import Books from "./pages/Books.js";
 import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
+import LogOut from "./components/LogOut.js";
+
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/logout" element={<LogOut />} />
       </Routes>
     </BrowserRouter>
   );
