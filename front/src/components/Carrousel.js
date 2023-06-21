@@ -13,9 +13,9 @@ const Carrousel = () => (
   <div className="carousel-container">
     <AwesomeSlider
       className="slider"
-      bullets={false} // Désactiver les indicateurs de diapositives
-      organicArrows={true} // Activer les flèches
-      animation="fallAnimation" // Utiliser une animation personnalisée
+      bullets={false}
+      organicArrows={true}
+      animation="fallAnimation"
     >
       {images.map((image, index) => (
         <div key={index} data-src={image} />

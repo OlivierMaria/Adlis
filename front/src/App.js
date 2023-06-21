@@ -6,8 +6,8 @@ import React from "react";
 import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
 import Login from "./pages/Login.js";
-import Footer from "./components/Footer.js";
 import SignUp from "./pages/SignUp.js";
+import BookPage from "./pages/BookPage.js";
 
 const App = () => {
   return (
@@ -16,13 +16,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="books" element={<Books />} />
+        <Route path="books/:title" element={<Books />} />
+        <Route path="/books/:title" component={<BookPage />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
-
-      <Footer />
     </BrowserRouter>
   );
 };

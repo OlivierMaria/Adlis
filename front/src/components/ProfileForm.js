@@ -11,7 +11,6 @@ const ProfileForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Effectuer des actions supplémentaires, telles que l'envoi des données au serveur
     console.log("Formulaire soumis !");
   };
 
