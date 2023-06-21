@@ -4,7 +4,7 @@ footer {
   bottom: 0;
   width: 100%;
   padding: 0.25em;
-  background-color: rgb(117, 181, 189);
+  background-color: rgba(165, 208, 201, 0.946);
   color: rgb(6, 17, 28);
   display: grid;
   place-content: center;
