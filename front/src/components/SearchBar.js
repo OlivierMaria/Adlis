@@ -1,4 +1,5 @@
 import React from "react";
+import "../style/SearchForm.css";
 
 const SearchBar = ({ onSearch }) => {
   return (
@@ -12,6 +13,7 @@ const SearchBar = ({ onSearch }) => {
       <input
         id="search"
         type="text"
+        required
         role="searchbox"
         placeholder="Trouve ton livre.."
         onChange={(e) => onSearch(e.target.value)}
