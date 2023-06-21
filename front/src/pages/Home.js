@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar.js";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carrousel from "../components/Carrousel.js";
 import Navbar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -47,6 +48,7 @@ const Home = () => {
           <Card key={book.id} book={book.volumeInfo} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
