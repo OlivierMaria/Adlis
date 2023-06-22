@@ -1,13 +1,14 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../style/Card.css";
 import defaultImage from "../assets/img/Nopicture.png";
 
 const Card = ({ book }) => {
-  const bookTitle = encodeURIComponent(book?.title); // Encodage du titre du livre pour l'URL
+  const { title } = useParams();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    // Rediriger vers la page Books avec les détails du livre
-    window.location.href = `/books/${bookTitle}`;
+    navigate(`/books/${encodeURIComponent(book.title)}`);
   };
 
   return (

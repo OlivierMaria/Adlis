@@ -11,6 +11,7 @@ import Footer from "../components/Footer.js";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const apiKey = process.env.REACT_APP_MY_KEY;
 
   useEffect(() => {
     const baseUrl =
@@ -19,7 +20,7 @@ const Home = () => {
 
     const url = `${baseUrl}?q=${encodeURIComponent(
       searchTerm
-    )}&maxResults=${maxResults}&key=AIzaSyB4EoQJB44Ys7oF9V2MB377tJjERIRkVsg`;
+    )}&maxResults=${maxResults}&key=${apiKey}`;
 
     axios
       .get(url)
