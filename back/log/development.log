@@ -5451,3 +5451,164 @@ Processing by SessionsController#destroy as HTML
 Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 4.0ms | Allocations: 3388)
 
 
+Started POST "/sign_up" for ::1 at 2023-06-22 15:43:47 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#create as HTML
+  Parameters: {"username"=>"akvayli", "email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "registration"=>{"username"=>"akvayli", "email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :registration. Context: { controller: RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fa2e0af3180>, params: {"username"=>"akvayli", "email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"registrations", "action"=>"create", "registration"=>{"username"=>"akvayli", "email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "faouzi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "verified", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "akvayli"], ["email", "faouzi@gmail.com"], ["password_digest", "[FILTERED]"], ["verified", false], ["created_at", "2023-06-22 13:43:48.197542"], ["updated_at", "2023-06-22 13:43:48.197542"]]
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+  [1m[36mSession Create (1.4ms)[0m  [1m[32mINSERT INTO "sessions" ("expires_at", "user_id", "user_agent", "ip_address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["expires_at", "2023-06-22 16:43:48.212321"], ["user_id", 13], ["user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"], ["ip_address", "::1"], ["created_at", "2023-06-22 13:43:48.227025"], ["updated_at", "2023-06-22 13:43:48.227025"]]
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: f809e9fa-a5c8-47a4-9ec2-265373b63b3c) to Async(default) with arguments: "UserMailer", "email_verification", "deliver_now", {:params=>{:user=>#<GlobalID:0x00007fa2f0d2ce50 @uri=#<URI::GID gid://back/User/13>>}, :args=>[]}
+Completed 201 Created in 287ms (Views: 0.2ms | ActiveRecord: 17.2ms | Allocations: 73501)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c] Performing ActionMailer::MailDeliveryJob (Job ID: f809e9fa-a5c8-47a4-9ec2-265373b63b3c) from Async(default) enqueued at 2023-06-22T13:43:48Z with arguments: "UserMailer", "email_verification", "deliver_now", {:params=>{:user=>#<GlobalID:0x00007fa2f0d5c1f0 @uri=#<URI::GID gid://back/User/13>>}, :args=>[]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   [1m[36mEmailVerificationToken Create (1.0ms)[0m  [1m[32mINSERT INTO "email_verification_tokens" ("user_id") VALUES ($1) RETURNING "id"[0m  [["user_id", 13]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   Rendering user_mailer/email_verification.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   Rendered user_mailer/email_verification.html.erb within layouts/mailer (Duration: 3.9ms | Allocations: 609)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c]   Rendered layout layouts/mailer.html.erb (Duration: 6.0ms | Allocations: 886)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c] UserMailer#email_verification: processed outbound mail in 47.9ms
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c] Delivered mail 6494501449a55_20e44dbc4578f@akvayli.mail (1023.4ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c] Date: Thu, 22 Jun 2023 15:43:48 +0200
+From: sellandbuythp@gmail.com
+To: faouzi@gmail.com
+Message-ID: <6494501449a55_20e44dbc4578f@akvayli.mail>
+Subject: Verify your email
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Hey there,</p>
+
+<p>This is to confirm that faouzi@gmail.com is the email you want to use on your account. If you ever lose your password, that's where we'll email a reset link.</p>
+
+<p><strong>You must hit the link below to confirm that you received this email.</strong></p>
+
+<p><a href="http://localhost:3000/identity/email_verification?sid=eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1UTT0iLCJleHAiOiIyMDIzLTA2LTI0VDEzOjQzOjQ4LjI3M1oiLCJwdXIiOiJlbWFpbF92ZXJpZmljYXRpb25fdG9rZW4ifX0%3D--ffe3198c10ab36e1b40f66ce5439afbc1d532ea858431bb27ad43967cb6e4f73">Yes, use this email for my account</a></p>
+
+<hr>
+
+<p>Have questions or need help? Just reply to this email and our support team will help you sort it out.</p>
+
+  </body>
+</html>
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [f809e9fa-a5c8-47a4-9ec2-265373b63b3c] Performed ActionMailer::MailDeliveryJob (Job ID: f809e9fa-a5c8-47a4-9ec2-265373b63b3c) from Async(default) in 1078.53ms
+Started DELETE "/sessions/13" for 127.0.0.1 at 2023-06-22 15:47:36 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = $1 AND "sessions"."id" = $2 LIMIT $3[0m  [["user_id", 13], ["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:52:in `set_session'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mSession Destroy (1.0ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = $1[0m  [["id", 13]]
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 4.4ms | Allocations: 4085)
+
+
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions"[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started POST "/sign_in" for 127.0.0.1 at 2023-06-22 15:57:39 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "session"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "faouzi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25:in `create'
+  [1m[36mSession Load (1.0ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = $1 AND (expires_at > '2023-06-22 13:57:39.449662') LIMIT $2[0m  [["user_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+  [1m[36mSession Create (1.2ms)[0m  [1m[32mINSERT INTO "sessions" ("expires_at", "user_id", "user_agent", "ip_address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["expires_at", "2023-06-22 16:57:39.452587"], ["user_id", 13], ["user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"], ["ip_address", "127.0.0.1"], ["created_at", "2023-06-22 13:57:39.453602"], ["updated_at", "2023-06-22 13:57:39.453602"]]
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+Completed 201 Created in 246ms (Views: 0.3ms | ActiveRecord: 10.6ms | Allocations: 6417)
+
+
+Started DELETE "/sessions/14" for 127.0.0.1 at 2023-06-22 16:16:10 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = $1 AND "sessions"."id" = $2 LIMIT $3[0m  [["user_id", 13], ["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:52:in `set_session'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mSession Destroy (0.4ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = $1[0m  [["id", 14]]
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+Completed 200 OK in 22ms (Views: 0.2ms | ActiveRecord: 8.7ms | Allocations: 6136)
+
+
+Started POST "/sign_in" for 127.0.0.1 at 2023-06-22 16:16:49 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"email"=>"faouzi@gmail.com", "password"=>"[FILTERED]", "session"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "faouzi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:25:in `create'
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = $1 AND (expires_at > '2023-06-22 14:16:49.622953') LIMIT $2[0m  [["user_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:28:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+  [1m[36mSession Create (0.8ms)[0m  [1m[32mINSERT INTO "sessions" ("expires_at", "user_id", "user_agent", "ip_address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["expires_at", "2023-06-22 17:16:49.624945"], ["user_id", 13], ["user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"], ["ip_address", "127.0.0.1"], ["created_at", "2023-06-22 14:16:49.625676"], ["updated_at", "2023-06-22 14:16:49.625676"]]
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:33:in `create'
+Completed 201 Created in 216ms (Views: 0.2ms | ActiveRecord: 11.3ms | Allocations: 3307)
+
+
+Started DELETE "/sessions/15" for 127.0.0.1 at 2023-06-22 17:09:13 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mSession Load (1.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."user_id" = $1 AND "sessions"."id" = $2 LIMIT $3[0m  [["user_id", 13], ["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:52:in `set_session'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mSession Destroy (1.8ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = $1[0m  [["id", 15]]
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/sessions_controller.rb:45:in `destroy'
+Completed 200 OK in 157ms (Views: 3.6ms | ActiveRecord: 34.8ms | Allocations: 6160)
+
+

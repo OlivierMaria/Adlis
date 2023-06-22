@@ -1,15 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dropdown = () => {
+  const parseUserData = localStorage.getItem("token");
+  const currentUser = parseUserData;
+
+  const navigate = useNavigate();
+  const userDataitems = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataitems);
+  const token = localStorage.getItem("token");
+
+  const logOutRequest = () => {
+    axios
+      .delete(`http://127.0.0.1:3000/sessions/${userData.session_id}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          localStorage.clear();
+          return navigate("/");
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          navigate("/");
+        } else {
+          console.log(error.response.status);
+        }
+      });
+  };
+
   return (
-    <div class="dropdown">
+    <div className="dropdown">
       <button>Profile</button>
-      <div class="dropdown-options">
-        <Link to="/login">Connexion</Link>
-        <Link to="/signup">Inscription</Link>
-        <Link to="/dashboard">Profil</Link>
-        <Link to="/logout">Déconnexion</Link>
+      <div className="dropdown-options">
+        {currentUser === null ? (
+          <>
+            <Link to="/login">Connexion</Link>
+            <Link to="/signup">Inscription</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/dashboard">Profil</Link>
+            <button onClick={logOutRequest}>Deconnexion</button>
+          </>
+        )}
       </div>
     </div>
   );
