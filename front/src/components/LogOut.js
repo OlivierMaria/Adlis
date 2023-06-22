@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const LogOut = () => {
   const navigate = useNavigate();
+  const userDataitems = localStorage.getItem("userData");
+  const userData = JSON.parse(userDataitems);
   const token = localStorage.getItem("token");
-  const currentSession = localStorage.getItem("session_id");
 
   const logOutRequest = () => {
     axios
-      .delete(`http://127.0.0.1:3000/sessions/${currentSession}`, {
+      .delete(`http://127.0.0.1:3000/sessions/${userData.session_id}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
