@@ -15,21 +15,29 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     axios
       .post("http://127.0.0.1:3000/sign_in", {
         email: email,
         password: password,
       })
       .then((res) => {
-        const { username, user_id, session_id } = res.data;
+        if (res.status === 201) {
+          const token = res.data.token;
+          localStorage.setItem("token", token);
 
-        // localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user_id", JSON.stringify(user_id));
-        localStorage.setItem("username", JSON.stringify(username));
-        localStorage.setItem("session_id", JSON.stringify(session_id));
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({
+              user_id: res.data.user_id,
+              username: res.data.username,
+              session_id: res.data.session_id,
+            })
+          );
 
-        navigate("/");
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.error(error);
