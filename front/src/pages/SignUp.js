@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const Identifiants = {
     username: "",
     email: "",
@@ -10,22 +12,25 @@ const SignUp = () => {
   };
   const [userData, setUserData] = useState(Identifiants);
 
-  const signUpRequest = () => {
-    axios({
-      url: "http://localhost:3000/sign_up",
-      method: "post",
-      data: userData,
-    })
-      .then((res) => {
-        const { token, username, user_id, session_id } = res.data;
-        localStorage.setItem("X-Session-Token", token);
-        localStorage.setItem("user_id", JSON.stringify(user_id));
-        localStorage.setItem("username", JSON.stringify(username));
-        localStorage.setItem("session_id", JSON.stringify(session_id));
-      })
-      .catch((error) => {
-        console.log(error.response.status);
+  const signUpRequest = async () => {
+    try {
+      const res = await axios({
+        url: "http://localhost:3000/sign_up",
+        method: "post",
+        data: userData,
       });
+
+      const { token, username, user_id, session_id } = res.data;
+
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("user_id", JSON.stringify(user_id));
+      localStorage.setItem("username", JSON.stringify(username));
+      localStorage.setItem("session_id", JSON.stringify(session_id));
+
+      return navigate("/");
+    } catch (error) {
+      console.log(error.res.status);
+    }
   };
 
   const handleChange = (e) => {

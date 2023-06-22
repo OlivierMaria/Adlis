@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -14,22 +15,25 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post('/api/login', {
+  const handleLogin = () => {
+    axios
+      .post("http://127.0.0.1:3000/sign_in", {
         email: email,
-        password: password
+        password: password,
+      })
+      .then((res) => {
+        const { username, user_id, session_id } = res.data;
+
+        // localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("user_id", JSON.stringify(user_id));
+        localStorage.setItem("username", JSON.stringify(username));
+        localStorage.setItem("session_id", JSON.stringify(session_id));
+
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
       });
-
-      console.log('Réponse de la requête:', response.data);
-    } catch (error) {
-      console.error('Une erreur s\'est produite lors de la requête POST:', error);
-    }
-
-    setEmail('');
-    setPassword('');
   };
 
   return (
@@ -54,11 +58,9 @@ const Login = () => {
           required
         />
       </div>
-      {error && <div>{error}</div>}
-      <button type="submit">Se connecter</button>
+      <button action="submit">Se connecter</button>
     </form>
   );
 };
 
 export default Login;
-
