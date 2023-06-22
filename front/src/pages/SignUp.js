@@ -12,36 +12,39 @@ const SignUp = () => {
   };
   const [userData, setUserData] = useState(Identifiants);
 
-  const signUpRequest = async () => {
-    try {
-      const res = await axios({
-        url: "http://localhost:3000/sign_up",
-        method: "post",
-        data: userData,
+  const signUpRequest = (e) => {
+    e.preventDefault();
+    console.log(userData);
+    axios
+      .post("http://localhost:3000/sign_up", userData)
+      .then((res) => {
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({
+            user_id: res.data.user_id,
+            username: res.data.username,
+            session_id: res.data.session_id,
+          })
+        );
+
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
       });
-
-      const { token, username, user_id, session_id } = res.data;
-
-      localStorage.setItem("token", JSON.stringify(token));
-      localStorage.setItem("user_id", JSON.stringify(user_id));
-      localStorage.setItem("username", JSON.stringify(username));
-      localStorage.setItem("session_id", JSON.stringify(session_id));
-
-      return navigate("/");
-    } catch (error) {
-      console.log(error.res.status);
-    }
   };
 
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
-    e.preventDefault();
   };
 
   return (
     <div>
-      <form>
-        <label htmlFor="username">Pseudo</label>
+      <form onSubmit={signUpRequest}>
+        <label htmlFor="username">Pseudo :</label>
         <input
           type="text"
           id="username"
@@ -49,7 +52,7 @@ const SignUp = () => {
           name="username"
           onChange={handleChange}
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email :</label>
         <input
           type="text"
           id="email"
@@ -57,7 +60,7 @@ const SignUp = () => {
           value={userData.email}
           onChange={handleChange}
         />
-        <label htmlFor="password">Mot de passe</label>
+        <label htmlFor="password">Mot de passe :</label>
         <input
           type="password"
           id="password"
@@ -66,7 +69,7 @@ const SignUp = () => {
           onChange={handleChange}
         />
         <label htmlFor="password_confirmation">
-          Confirmation du Mot de passe
+          Confirmation du Mot de passe :
         </label>
         <input
           type="password"
@@ -75,7 +78,7 @@ const SignUp = () => {
           value={userData.password_confirmation}
           onChange={handleChange}
         />
-        <button onClick={signUpRequest}>Inscription</button>
+        <button action="submit">Inscription </button>
       </form>
     </div>
   );
