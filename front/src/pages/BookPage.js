@@ -41,6 +41,7 @@ const BookPage = () => {
         alt={book?.title}
         className="card-image"
       />
+      <h2>{book.categories}</h2>
     </div>
   );
 };

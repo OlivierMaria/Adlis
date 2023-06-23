@@ -11,8 +11,7 @@ const Books = () => {
   return (
     <div>
       <h1>Books</h1>
-      <p>Livre sélectionné : {id}</p>
-      {/* Affichez les détails du livre ici */}
+      <p>Mes livres préférée sont : </p>
     </div>
   );
 };

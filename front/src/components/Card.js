@@ -1,10 +1,10 @@
+// Card.js
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../style/Card.css";
 import defaultImage from "../assets/img/Nopicture.png";
 
 const Card = ({ book }) => {
-  const { title } = useParams();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,7 +20,6 @@ const Card = ({ book }) => {
           alt={book?.title}
           className="card-image"
         />
-
         <button onClick={handleClick}>J'y vais !</button>
       </div>
     </div>

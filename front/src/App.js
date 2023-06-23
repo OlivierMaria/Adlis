@@ -8,11 +8,16 @@ import Books from "./pages/Books.js";
 // import Footer from "./components/Footer.js";
 // import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
+
+import Profil from "./pages/Profil.js";
 // import LoginPage from "./pages/LoginPage.js";
 import SignInPage from "./pages/SignInPage.js";
 import SignUpPage from "./pages/SignUpPage.js";
 import ResetPassword from "./components/ResetPasword.js";
+
 import Navbar from "./components/Navbar.js";
+
+import BookCategory from "./pages/BookCategory.js";
 
 const App = () => {
   const book = {
@@ -32,7 +37,9 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="books" element={<Books />} />
+        <Route path="/list/:category" element={<BookCategory />} />
         <Route path="books/:title" element={<BookPage book={book} />} />
+        <Route path="profil" element={<Profil />} />
         {currentUser === null ? (
           <>
             <Route path="signup" element={<SignUpPage />} />
