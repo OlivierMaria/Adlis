@@ -21,7 +21,9 @@
 .label {
   margin-bottom: 10px;
 }
-
+.text-danger {
+  color: red;
+}
 .input {
   width: 100%;
   padding: 8px;

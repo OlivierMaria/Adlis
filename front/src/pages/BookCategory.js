@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar.js";
 import Card from "../components/Card.js";
 import axios from "axios";
 
@@ -35,7 +34,6 @@ const BookCategory = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Voici le rendu de la catégorie : {category}</h1>
       <div className="row">
         {books.map((book) => (
