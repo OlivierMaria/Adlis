@@ -8,7 +8,6 @@ import Books from "./pages/Books.js";
 // import Footer from "./components/Footer.js";
 // import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
-
 import Profil from "./pages/Profil.js";
 // import LoginPage from "./pages/LoginPage.js";
 import SignInPage from "./pages/SignInPage.js";
@@ -18,6 +17,7 @@ import ResetPassword from "./components/ResetPasword.js";
 import Navbar from "./components/Navbar.js";
 
 import BookCategory from "./pages/BookCategory.js";
+import "./App.css";
 
 const App = () => {
   const book = {
