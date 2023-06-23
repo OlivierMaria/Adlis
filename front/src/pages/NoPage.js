@@ -1,9 +1,10 @@
 import React from "react";
+import "../style/NoPage.css";
 
 const NoPage = () => {
   return (
-    <div>
-      <h1>Erreur404.</h1>
+    <div className="no-page-container">
+      <h1>Erreur 404.</h1>
     </div>
   );
 };

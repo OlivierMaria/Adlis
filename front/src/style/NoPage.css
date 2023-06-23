@@ -1,0 +1,16 @@
+.no-page-container {
+  background-image: url("../assets/img/Error.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-page-container h1 {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}

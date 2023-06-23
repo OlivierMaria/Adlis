@@ -58,7 +58,7 @@ const Login = () => {
           required
         />
       </div>
-      <button action="submit">Se connecter</button>
+      <button type="submit">Se connecter</button>
     </form>
   );
 };
