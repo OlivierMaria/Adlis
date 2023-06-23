@@ -31,9 +31,9 @@ class SessionsController < ApplicationController
         render json: { error: "User already has an active session" }, status: :unprocessable_entity
       else
         @session = user.sessions.create!(expires_at: 3.hours.from_now)
-        response.set_header "X-Session-Token", @session.signed_id
+        token = response.set_header "token", @session.signed_id
 
-        render json: { username: user.username, user_id: user.id, session_id: @session.id }, status: :created
+        render json: {email: user.email, token: token, username: user.username, user_id: user.id, session_id: @session.id }, status: :created
       end
     else
       render json: { error: "That email or password is incorrect" }, status: :unauthorized
