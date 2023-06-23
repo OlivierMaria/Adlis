@@ -58,7 +58,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navbar />
       <Carrousel />
       <SearchBar onSearch={handleSearch} />
       {categories.map((categoryData) => (

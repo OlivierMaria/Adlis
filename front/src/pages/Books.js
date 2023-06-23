@@ -10,7 +10,6 @@ const Books = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Books</h1>
       <p>Mes livres préférée sont : </p>
     </div>

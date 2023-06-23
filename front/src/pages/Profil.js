@@ -6,8 +6,8 @@ import Dashbord from "../components/Dashboard.js";
 const Profil = () => {
   return (
     <div>
-      
-      <Navbar />
+
+
       <ProfileForm />
       <Dashbord/>
     </div>

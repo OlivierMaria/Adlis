@@ -14,6 +14,9 @@ import Profil from "./pages/Profil.js";
 import SignInPage from "./pages/SignInPage.js";
 import SignUpPage from "./pages/SignUpPage.js";
 import ResetPassword from "./components/ResetPasword.js";
+
+import Navbar from "./components/Navbar.js";
+
 import BookCategory from "./pages/BookCategory.js";
 
 const App = () => {
@@ -28,6 +31,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
