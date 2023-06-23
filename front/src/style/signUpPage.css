@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #428bca;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #3071a9;
+}
+
+.signip-link {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signip-link a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.signip-link a:hover {
+  text-decoration: underline;
+}
