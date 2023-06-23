@@ -36,7 +36,7 @@ const Dropdown = () => {
       <div className="dropdown-options">
         {currentUser === null ? (
           <>
-            <Link to="/login">Connexion</Link>
+            <Link to="/signin">Connexion</Link>
             <Link to="/signup">Inscription</Link>
           </>
         ) : (

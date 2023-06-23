@@ -6,9 +6,12 @@ import React from "react";
 // import NoPage from "./pages/NoPage.js";
 import Books from "./pages/Books.js";
 // import Footer from "./components/Footer.js";
-import SignUp from "./pages/SignUp.js";
+// import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
-import LoginPage from "./pages/LoginPage.js";
+// import LoginPage from "./pages/LoginPage.js";
+import SignInPage from "./pages/SignInPage.js";
+import SignUpPage from "./pages/SignUpPage.js";
+import ResetPassword from "./components/ResetPasword.js";
 
 const App = () => {
   const book = {
@@ -30,8 +33,9 @@ const App = () => {
         <Route path="books/:title" element={<BookPage book={book} />} />
         {currentUser === null ? (
           <>
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route path="signup" element={<SignUpPage />} />
+            <Route path="resetpassword" element={<ResetPassword />} />
+            <Route path="signin" element={<SignInPage />} />
           </>
         ) : null}
         <Route path="*" element={<Home />} />
