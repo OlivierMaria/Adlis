@@ -41,7 +41,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navbar />
       <Carrousel />
       <SearchBar onSearch={handleSearch} />
       <div className="row">

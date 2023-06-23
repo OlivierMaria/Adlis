@@ -35,7 +35,6 @@ const BookPage = () => {
 
   return (
     <div>
-      <Navbar />
       <h2>{book.title}</h2>
       <img
         src={book?.imageLinks?.smallThumbnail || defaultImage}

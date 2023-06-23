@@ -10,7 +10,6 @@ const Books = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Books</h1>
       <p>Livre sélectionné : {id}</p>
       {/* Affichez les détails du livre ici */}

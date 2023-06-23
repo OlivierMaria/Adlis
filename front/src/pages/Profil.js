@@ -5,7 +5,6 @@ import ProfileForm from "../components/ProfileForm.js";
 const Profil = () => {
   return (
     <div>
-      <Navbar />
       <ProfileForm />
     </div>
   );

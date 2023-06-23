@@ -12,6 +12,7 @@ import BookPage from "./pages/BookPage.js";
 import SignInPage from "./pages/SignInPage.js";
 import SignUpPage from "./pages/SignUpPage.js";
 import ResetPassword from "./components/ResetPasword.js";
+import Navbar from "./components/Navbar.js";
 
 const App = () => {
   const book = {
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />

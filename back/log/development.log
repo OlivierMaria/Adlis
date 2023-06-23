@@ -6307,3 +6307,96 @@ Content-Transfer-Encoding: 7bit
 </html>
 
 [ActiveJob] [ActionMailer::MailDeliveryJob] [03cd08a9-f7a5-4bf9-8565-69dc89ab25ec] Performed ActionMailer::MailDeliveryJob (Job ID: 03cd08a9-f7a5-4bf9-8565-69dc89ab25ec) from Async(default) in 470.44ms
+Started GET "/ws" for 127.0.0.1 at 2023-06-23 16:41:49 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-06-23 16:41:53 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-06-23 16:42:01 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/signup" for ::1 at 2023-06-23 16:42:07 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/signup"):
+  
+Started GET "/favicon.ico" for ::1 at 2023-06-23 16:42:08 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/sign_up" for ::1 at 2023-06-23 16:42:42 +0200
+Processing by RegistrationsController#create as HTML
+  Parameters: {"username"=>"faouzi", "email"=>"foofooamazigh@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "accept_conditions"=>true, "registration"=>{"username"=>"faouzi", "email"=>"foofooamazigh@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "accept_conditions"=>true}}
+[31mUnpermitted parameters: :accept_conditions, :registration. Context: { controller: RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fed889c2098>, params: {"username"=>"faouzi", "email"=>"foofooamazigh@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "accept_conditions"=>true, "controller"=>"registrations", "action"=>"create", "registration"=>{"username"=>"faouzi", "email"=>"foofooamazigh@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "accept_conditions"=>true}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "foofooamazigh@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "verified", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "faouzi"], ["email", "foofooamazigh@gmail.com"], ["password_digest", "[FILTERED]"], ["verified", false], ["created_at", "2023-06-23 14:42:42.838734"], ["updated_at", "2023-06-23 14:42:42.838734"]]
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/registrations_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+  [1m[36mSession Create (1.2ms)[0m  [1m[32mINSERT INTO "sessions" ("expires_at", "user_id", "user_agent", "ip_address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["expires_at", "2023-06-23 17:42:42.859390"], ["user_id", 15], ["user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"], ["ip_address", "::1"], ["created_at", "2023-06-23 14:42:42.875491"], ["updated_at", "2023-06-23 14:42:42.875491"]]
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/registrations_controller.rb:9:in `create'
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 326a2d23-ce62-4e38-ad8f-a8ef257ef2fb) to Async(default) with arguments: "UserMailer", "email_verification", "deliver_now", {:params=>{:user=>#<GlobalID:0x00007fed89146ff8 @uri=#<URI::GID gid://back/User/15>>}, :args=>[]}
+Completed 201 Created in 290ms (Views: 0.3ms | ActiveRecord: 14.9ms | Allocations: 54687)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb] Performing ActionMailer::MailDeliveryJob (Job ID: 326a2d23-ce62-4e38-ad8f-a8ef257ef2fb) from Async(default) enqueued at 2023-06-23T14:42:42Z with arguments: "UserMailer", "email_verification", "deliver_now", {:params=>{:user=>#<GlobalID:0x00007fed89175a38 @uri=#<URI::GID gid://back/User/15>>}, :args=>[]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   [1m[36mEmailVerificationToken Create (1.5ms)[0m  [1m[32mINSERT INTO "email_verification_tokens" ("user_id") VALUES ($1) RETURNING "id"[0m  [["user_id", 15]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   ↳ app/mailers/user_mailer.rb:11:in `email_verification'
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   Rendering user_mailer/email_verification.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   Rendered user_mailer/email_verification.html.erb within layouts/mailer (Duration: 1.7ms | Allocations: 327)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb]   Rendered layout layouts/mailer.html.erb (Duration: 3.4ms | Allocations: 587)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb] UserMailer#email_verification: processed outbound mail in 46.6ms
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb] Delivered mail 6495af62e9f04_7228514055752@akvayli.mail (978.8ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb] Date: Fri, 23 Jun 2023 16:42:42 +0200
+From: sellandbuythp@gmail.com
+To: foofooamazigh@gmail.com
+Message-ID: <6495af62e9f04_7228514055752@akvayli.mail>
+Subject: Verify your email
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Hey there,</p>
+
+<p>This is to confirm that foofooamazigh@gmail.com is the email you want to use on your account. If you ever lose your password, that's where we'll email a reset link.</p>
+
+<p><strong>You must hit the link below to confirm that you received this email.</strong></p>
+
+<p><a href="http://localhost:3000/identity/email_verification?sid=eyJfcmFpbHMiOnsibWVzc2FnZSI6Ik1UVT0iLCJleHAiOiIyMDIzLTA2LTI1VDE0OjQyOjQyLjkzNloiLCJwdXIiOiJlbWFpbF92ZXJpZmljYXRpb25fdG9rZW4ifX0%3D--f555a726dc578957a0a6bea1a27b47a697b63e37b2fcdaf1046614418707c93a">Yes, use this email for my account</a></p>
+
+<hr>
+
+<p>Have questions or need help? Just reply to this email and our support team will help you sort it out.</p>
+
+  </body>
+</html>
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [326a2d23-ce62-4e38-ad8f-a8ef257ef2fb] Performed ActionMailer::MailDeliveryJob (Job ID: 326a2d23-ce62-4e38-ad8f-a8ef257ef2fb) from Async(default) in 1032.61ms

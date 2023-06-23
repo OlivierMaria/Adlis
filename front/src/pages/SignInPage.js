@@ -14,11 +14,11 @@ const SignInPage = () => {
     setValue,
   } = useForm();
 
-  const handleRegistration = (data) => {
-    handleLogin(data);
+  const handleSignInSubmit = (data) => {
+    handleSignIn(data);
   };
 
-  const handleLogin = (data) => {
+  const handleSignIn = (data) => {
     axios
       .post("http://127.0.0.1:3000/sign_in", data)
       .then((res) => {
@@ -48,7 +48,7 @@ const SignInPage = () => {
       });
   };
 
-  const registerOptions = {
+  const signInOptions = {
     email: {
       required: "Email requis",
       pattern: {
@@ -65,13 +65,13 @@ const SignInPage = () => {
     <>
       <div className="container">
         <div className="form-container">
-          <form onSubmit={handleSubmit(handleRegistration, handleError)}>
+          <form onSubmit={handleSubmit(handleSignInSubmit, handleError)}>
             <div>
               <label htmlFor="email">Email:</label>
               <input
                 type="text"
                 name="email"
-                {...register("email", registerOptions.email)}
+                {...register("email", signInOptions.email)}
                 className="input"
               />
               <small className="text-danger">
@@ -83,7 +83,7 @@ const SignInPage = () => {
               <input
                 type="password"
                 name="password"
-                {...register("password", registerOptions.password)}
+                {...register("password", signInOptions.password)}
                 className="input"
               />
               <small className="text-danger">
