@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
         @session = user.sessions.create!(expires_at: 3.hours.from_now)
         token = response.set_header "token", @session.signed_id
 
-        render json: {token: token, username: user.username, user_id: user.id, session_id: @session.id }, status: :created
+        render json: {token: token, username: user.username, user_id: user.id, session_id: @session.id, user_mail: user.email }, status: :created
       end
     else
       render json: { error: "That email or password is incorrect" }, status: :unauthorized

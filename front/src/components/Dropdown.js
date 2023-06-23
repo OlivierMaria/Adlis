@@ -32,7 +32,8 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown">
-      <button>Profile</button>
+    
+   <button>Mon profil</button>
       <div className="dropdown-options">
         {currentUser === null ? (
           <>
@@ -41,7 +42,7 @@ const Dropdown = () => {
           </>
         ) : (
           <>
-            <Link to="/dashboard">Profil</Link>
+            <Link to="/profil">Profil</Link>
             <button onClick={logOutRequest}>Deconnexion</button>
           </>
         )}

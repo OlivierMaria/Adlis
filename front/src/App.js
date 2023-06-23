@@ -9,6 +9,7 @@ import Books from "./pages/Books.js";
 import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
 import LoginPage from "./pages/LoginPage.js";
+import Profil from "./pages/Profil.js";
 
 const App = () => {
   const book = {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="books" element={<Books />} />
         <Route path="books/:title" element={<BookPage book={book} />} />
+        <Route path="profil" element={<Profil />} />
         {currentUser === null ? (
           <>
             <Route path="signup" element={<SignUp />} />
