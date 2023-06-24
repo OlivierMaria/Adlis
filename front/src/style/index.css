@@ -8,6 +8,8 @@
 @import "./signUpPage.css";
 @import "./ResetPassword.css";
 @import "./BookPage.css";
+@import "./form.css";
+
 body {
   margin: 0;
   font-family: "Libre Baskerville", serif;
