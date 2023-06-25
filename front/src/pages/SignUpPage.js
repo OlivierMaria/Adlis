@@ -42,7 +42,7 @@ const SignUpPage = () => {
         passwordConfirmation="confirmation mot de passe"
         Conditions="conditions generales "
         button="s'inscrire"
-        handleSubmitRequest={handleSubmitRequest}
+        sendData={handleSubmitRequest}
       />
       <h6>déjà enregistré ?</h6>
       <Link to="/signin">Sign in</Link>
