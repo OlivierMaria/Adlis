@@ -32,7 +32,7 @@ const ResetPassword = () => {
         <Form
           email="Adresse Email"
           button="envoyer"
-          handleSubmitRequest={handleSubmitRequest}
+          sendData={handleSubmitRequest}
         />
         <br />
         <div className="form-group">

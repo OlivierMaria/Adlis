@@ -43,7 +43,7 @@ const SignInPage = () => {
         email="Adresse Email"
         password="Mot de passe"
         button="se connecter"
-        handleSubmitRequest={handleSubmitRequest}
+        sendData={handleSubmitRequest}
       />
       <div className="signp-link">
         <span>

@@ -3,6 +3,18 @@ import { useForm } from "react-hook-form";
 
 const Form = (props) => {
   const handleError = (errors) => {};
+  const {
+    username,
+    email,
+    password,
+    passwordConfirmation,
+    Conditions,
+    button,
+    usernamePlaceholder,
+    emailPlaceholder,
+    paswwordPlaceholder,
+    passwordConfirmationPlaceholder,
+  } = props;
 
   const {
     register,
@@ -12,7 +24,7 @@ const Form = (props) => {
   } = useForm();
 
   const handleSubmitRequest = (data) => {
-    props.handleSubmitRequest(data);
+    props.sendData(data);
   };
 
   const validOptions = {
@@ -45,12 +57,12 @@ const Form = (props) => {
         className="form"
         onSubmit={handleSubmit(handleSubmitRequest, handleError)}
       >
-        {props.username && (
+        {username && (
           <>
-            <label>{props.username}</label>
+            <label>{username}</label>
             <input
               type="text"
-              placeholder={props.usernamePlaceholder}
+              placeholder={usernamePlaceholder}
               {...register("username", validOptions.username)}
             />
             <small className="text-danger">
@@ -59,12 +71,12 @@ const Form = (props) => {
           </>
         )}
 
-        {props.email && (
+        {email && (
           <>
-            <label>{props.email}</label>
+            <label>{email}</label>
             <input
               type="email"
-              placeholder={props.emailPlaceholder}
+              placeholder={emailPlaceholder}
               {...register("email", validOptions.email)}
             />
             <small className="text-danger">
@@ -73,12 +85,12 @@ const Form = (props) => {
           </>
         )}
 
-        {props.password && (
+        {password && (
           <>
-            <label>{props.password}</label>
+            <label>{password}</label>
             <input
               type="password"
-              placeholder={props.paswwordPlaceholder}
+              placeholder={paswwordPlaceholder}
               {...register("password", validOptions.password)}
             />
             <small className="text-danger">
@@ -86,12 +98,12 @@ const Form = (props) => {
             </small>
           </>
         )}
-        {props.passwordConfirmation && (
+        {passwordConfirmation && (
           <>
-            <label>{props.passwordConfirmation}</label>
+            <label>{passwordConfirmation}</label>
             <input
               type="password"
-              placeholder={props.passwordConfirmationPlaceholder}
+              placeholder={passwordConfirmationPlaceholder}
               {...register(
                 "password_confirmation",
                 validOptions.password_confirmation
@@ -103,9 +115,9 @@ const Form = (props) => {
             </small>
           </>
         )}
-        {props.Conditions && (
+        {Conditions && (
           <>
-            <label htmlFor="accept_conditions">{props.conditions}</label>
+            <label htmlFor="accept_conditions">{Conditions}</label>
             <input
               type="checkbox"
               id="accept_conditions"
@@ -117,9 +129,9 @@ const Form = (props) => {
             </small>
           </>
         )}
-        {props.button && (
+        {button && (
           <>
-            <button>{props.button}</button>
+            <button>{button}</button>
           </>
         )}
       </form>
