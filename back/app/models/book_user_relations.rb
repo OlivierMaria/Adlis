@@ -1,0 +1,3 @@
+class BookUserRelations < ApplicationRecord
+
+  end

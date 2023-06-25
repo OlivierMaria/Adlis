@@ -185,3 +185,331 @@ Processing by SessionsController#destroy as HTML
 Completed 200 OK in 54ms (Views: 0.4ms | ActiveRecord: 18.9ms | Allocations: 6137)
 
 
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions"[0m
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions"[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBookUserJoinTable (20230624231624)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.6ms)[0m  [1m[35mCREATE TABLE "book_user" ("id" bigserial primary key, "user_id" integer, "book_id" integer)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE INDEX "index_book_user_on_user_id" ON "book_user" ("user_id")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE INDEX "index_book_user_on_book_id" ON "book_user" ("book_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230624231624"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBookUserJoinTable (20230624231624)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mDROP INDEX  "index_book_user_on_book_id"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP INDEX  "index_book_user_on_user_id"[0m
+  [1m[35m (1.8ms)[0m  [1m[35mDROP TABLE "book_user"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (1.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20230624231624"]]
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBookUserRelation (20230624234046)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "book_user_relations" ("id" bigserial primary key, "user_id" integer, "book_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230624234046"]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2950963735451797590)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:50:05 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"13", "book"=>{"book_id"=>"13"}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:50:05.627933"], ["updated_at", "2023-06-24 23:50:05.628934"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 20.2ms | Allocations: 67512)
+
+
+  
+NameError (uninitialized constant BooksController::BookUserRelation):
+  
+app/controllers/books_controller.rb:15:in `create'
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:54:39 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"13", "book"=>{"book_id"=>"13"}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.8ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:54:39.470205"], ["updated_at", "2023-06-24 23:54:39.472201"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 15.9ms | Allocations: 15405)
+
+
+  
+NameError (uninitialized constant BooksController::BookUserRelation
+Did you mean?  BookUserRelations):
+  
+app/controllers/books_controller.rb:15:in `create'
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:55:09 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"13", "book"=>{"book_id"=>"13"}}
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (1.7ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:55:09.683109"], ["updated_at", "2023-06-24 23:55:09.684269"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 14.9ms | Allocations: 15388)
+
+
+  
+NameError (uninitialized constant BooksController::BookUserRelation
+Did you mean?  BookUserRelations):
+  
+app/controllers/books_controller.rb:15:in `create'
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:55:43 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"13", "book"=>{"book_id"=>"13"}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:55:43.418792"], ["updated_at", "2023-06-24 23:55:43.419613"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mBookUserRelations Create (2.3ms)[0m  [1m[32mINSERT INTO "book_user_relations" ("user_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 13], ["book_id", 13], ["created_at", "2023-06-24 23:55:43.463070"], ["updated_at", "2023-06-24 23:55:43.463070"]]
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+Completed 200 OK in 107ms (Views: 0.4ms | ActiveRecord: 25.7ms | Allocations: 30128)
+
+
+  [1m[36mBookUserRelations Load (0.9ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations"[0m
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:56:33 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"13", "book"=>{"book_id"=>"13"}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.9ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:56:33.328365"], ["updated_at", "2023-06-24 23:56:33.329284"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:15:in `create'
+Completed 422 Unprocessable Entity in 30ms (Views: 0.4ms | ActiveRecord: 7.0ms | Allocations: 3460)
+
+
+Started POST "/books" for 127.0.0.1 at 2023-06-25 01:56:39 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"16", "book"=>{"book_id"=>"16"}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:56:39.816438"], ["updated_at", "2023-06-24 23:56:39.817205"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mBookUserRelations Create (1.0ms)[0m  [1m[32mINSERT INTO "book_user_relations" ("user_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 13], ["book_id", 16], ["created_at", "2023-06-24 23:56:39.832035"], ["updated_at", "2023-06-24 23:56:39.832035"]]
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+Completed 200 OK in 32ms (Views: 0.4ms | ActiveRecord: 9.2ms | Allocations: 5113)
+
+
+  [1m[36mBookUserRelations Load (0.6ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations"[0m
+Started GET "/books" for 127.0.0.1 at 2023-06-25 01:57:40 +0200
+Processing by BooksController#index as */*
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 02:57:40.868007"], ["updated_at", "2023-06-24 23:57:40.869281"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Pluck (0.5ms)[0m  [1m[34mSELECT "book_user_relations"."book_id" FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1[0m  [["user_id", 13]]
+  ↳ app/controllers/books_controller.rb:5:in `index'
+Completed 200 OK in 59ms (Views: 0.2ms | ActiveRecord: 13.2ms | Allocations: 14877)
+
+
+Started DELETE "/books" for 127.0.0.1 at 2023-06-25 01:58:25 +0200
+Processing by BooksController#destroy as */*
+  Parameters: {"book_id"=>"16", "book"=>{"book_id"=>"16"}}
+Filter chain halted as :authenticate rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 109)
+
+
+Started DELETE "/books" for 127.0.0.1 at 2023-06-25 01:59:13 +0200
+  
+ActionController::RoutingError (No route matches [DELETE] "/books"):
+  
+Started DELETE "/books" for 127.0.0.1 at 2023-06-25 01:59:35 +0200
+  
+ActionController::RoutingError (No route matches [DELETE] "/books"):
+  
+Started DELETE "/books/16" for 127.0.0.1 at 2023-06-25 02:00:41 +0200
+Processing by BooksController#destroy as */*
+  Parameters: {"id"=>"16"}
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:00:41.309908"], ["updated_at", "2023-06-25 00:00:41.311086"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Load (0.5ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" IS NULL LIMIT $2[0m  [["user_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `destroy'
+Completed 422 Unprocessable Entity in 80ms (Views: 0.3ms | ActiveRecord: 14.7ms | Allocations: 15024)
+
+
+Started DELETE "/books/16" for 127.0.0.1 at 2023-06-25 02:00:54 +0200
+Processing by BooksController#destroy as */*
+  Parameters: {"id"=>"16"}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.9ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:00:54.674108"], ["updated_at", "2023-06-25 00:00:54.675522"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Load (0.6ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" IS NULL LIMIT $2[0m  [["user_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `destroy'
+Completed 422 Unprocessable Entity in 95ms (Views: 0.5ms | ActiveRecord: 19.7ms | Allocations: 15009)
+
+
+Started DELETE "/books/16" for 127.0.0.1 at 2023-06-25 02:01:06 +0200
+Processing by BooksController#destroy as */*
+  Parameters: {"id"=>"16"}
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:01:06.655220"], ["updated_at", "2023-06-25 00:01:06.656127"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Load (0.5ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+  [1m[36mBookUserRelations Destroy (1.9ms)[0m  [1m[31mDELETE FROM "book_user_relations" WHERE "book_user_relations"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+Completed 200 OK in 98ms (Views: 0.6ms | ActiveRecord: 27.1ms | Allocations: 17515)
+
+
+Started DELETE "/books/13" for 127.0.0.1 at 2023-06-25 02:01:19 +0200
+Processing by BooksController#destroy as */*
+  Parameters: {"id"=>"13"}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (1.3ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:01:19.107788"], ["updated_at", "2023-06-25 00:01:19.110102"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Load (0.5ms)[0m  [1m[34mSELECT "book_user_relations".* FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+  [1m[36mBookUserRelations Destroy (0.7ms)[0m  [1m[31mDELETE FROM "book_user_relations" WHERE "book_user_relations"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/books_controller.rb:29:in `destroy'
+Completed 200 OK in 40ms (Views: 0.3ms | ActiveRecord: 9.7ms | Allocations: 4690)
+
+
+Started POST "/books" for 127.0.0.1 at 2023-06-25 02:01:58 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"16", "book"=>{"book_id"=>"16"}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:01:58.326429"], ["updated_at", "2023-06-25 00:01:58.330546"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mBookUserRelations Create (0.7ms)[0m  [1m[32mINSERT INTO "book_user_relations" ("user_id", "book_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 13], ["book_id", 16], ["created_at", "2023-06-25 00:01:58.345898"], ["updated_at", "2023-06-25 00:01:58.345898"]]
+  ↳ app/controllers/books_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/books_controller.rb:18:in `create'
+Completed 200 OK in 39ms (Views: 0.2ms | ActiveRecord: 8.8ms | Allocations: 5357)
+
+
+Started POST "/books" for 127.0.0.1 at 2023-06-25 02:02:00 +0200
+Processing by BooksController#create as */*
+  Parameters: {"book_id"=>"16", "book"=>{"book_id"=>"16"}}
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9:in `block in authenticate'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/models/current.rb:6:in `session='
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mSession Update (1.1ms)[0m  [1m[33mUPDATE "sessions" SET "expires_at" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["expires_at", "2023-06-25 03:02:00.665780"], ["updated_at", "2023-06-25 00:02:00.667472"], ["id", 27]]
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/application_controller.rb:14:in `authenticate'
+  [1m[36mBookUserRelations Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "book_user_relations" WHERE "book_user_relations"."user_id" = $1 AND "book_user_relations"."book_id" = $2 LIMIT $3[0m  [["user_id", 13], ["book_id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/books_controller.rb:15:in `create'
+Completed 422 Unprocessable Entity in 28ms (Views: 1.1ms | ActiveRecord: 5.2ms | Allocations: 3454)
+
+

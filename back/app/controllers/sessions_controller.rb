@@ -7,18 +7,12 @@ class SessionsController < ApplicationController
     render json: Current.user.sessions.order(created_at: :desc)
   end
 
-  # Affiche les détails d'une session
+  # Recupere les données de l'utilisateur actuel
   def show
-    if @session.expires_at.present? && @session.expires_at < Time.now
-      render json: { error: "Session has expired" }, status: :unprocessable_entity
-    else
-      if @session.expires_at.present?
-        @session.update(expires_at: 3.hours.from_now)
-      end
-
-      render json: @session
-    end
+    user = Current.user
+      render json: { email: user.email, username: user.username, user_id: user.id, session_id: @session.id }
   end
+  
   
   # Crée une nouvelle session pour l'utilisateur
   def create
@@ -33,7 +27,7 @@ class SessionsController < ApplicationController
         @session = user.sessions.create!(expires_at: 3.hours.from_now)
         token = response.set_header "token", @session.signed_id
 
-        render json: {email: user.email, token: token, username: user.username, user_id: user.id, session_id: @session.id }, status: :created
+        render json: {token: token, session_id: @session.id }, status: :created
       end
     else
       render json: { error: "That email or password is incorrect" }, status: :unauthorized
