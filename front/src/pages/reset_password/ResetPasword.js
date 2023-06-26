@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import Form from "./Form";
+import Form from "../../components/Form";
 
 const ResetPassword = () => {
   const navigate = useNavigate();

@@ -12,12 +12,13 @@ import Profil from "./pages/Profil.js";
 // import LoginPage from "./pages/LoginPage.js";
 import SignInPage from "./pages/SignInPage.js";
 import SignUpPage from "./pages/SignUpPage.js";
-import ResetPassword from "./components/ResetPasword.js";
+import ResetPassword from "./pages/reset_password/ResetPasword.js";
 
 import Navbar from "./components/Navbar.js";
 
 import BookCategory from "./pages/BookCategory.js";
 import "./App.css";
+import NewPassword from "./pages/reset_password/NewPassword.js";
 
 const App = () => {
   const book = {
@@ -44,6 +45,7 @@ const App = () => {
           <>
             <Route path="signup" element={<SignUpPage />} />
             <Route path="resetpassword" element={<ResetPassword />} />
+            <Route path="resetpassword/:edit" element={<NewPassword />} />
             <Route path="signin" element={<SignInPage />} />
           </>
         ) : null}
