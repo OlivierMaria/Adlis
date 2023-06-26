@@ -1,2 +1,0 @@
-class BookReview < ApplicationRecord
-end
