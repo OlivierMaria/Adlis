@@ -6,14 +6,15 @@ import Card from "../components/Card.js";
 import SearchBar from "../components/SearchBar.js";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carrousel from "../components/Carrousel.js";
-import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const apiKey = process.env.REACT_APP_MY_KEY;
-  const maxResults = 6; // Définissez la variable maxResults ici
+  const maxResults = 6;
+  const searchMaxResults = 40;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,37 +53,72 @@ const Home = () => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      if (searchTerm.trim() !== "") {
+        try {
+          const url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${searchMaxResults}&key=${apiKey}`;
+          const response = await axios.get(url);
+          const books = response.data.items || [];
+          setSearchResults(books);
+        } catch (error) {
+          console.log(error);
+          setSearchResults([]);
+        }
+      } else {
+        setSearchResults([]);
+      }
+    };
+
+    fetchSearchResults();
+  }, [searchTerm]);
+
   const handleSearch = (searchTerm) => {
-    setSearchTerm(searchTerm);
+    if (searchTerm.length >= 0) {
+      setSearchTerm(searchTerm);
+    }
   };
 
   return (
     <div className="home-container">
       <Carrousel />
       <SearchBar onSearch={handleSearch} />
-      {categories.map((categoryData) => (
-        <div
-          key={categoryData.category.searchTerm}
-          className="category-container"
-        >
+      {searchTerm.trim() !== "" && searchResults.length > 0 ? (
+        <div className="category-container">
           <div className="category-header">
-            <h2>{categoryData.category.name}</h2>
-            <button
-              className="view-more-button"
-              onClick={() =>
-                navigate(`/list/${categoryData.category.searchTerm}`)
-              }
-            >
-              Voir plus
-            </button>
+            <h2>Résultats de recherche pour "{searchTerm}"</h2>
           </div>
           <div className="row">
-            {categoryData.books.map((book) => (
+            {searchResults.map((book) => (
               <Card key={book.id} book={book.volumeInfo} />
             ))}
           </div>
         </div>
-      ))}
+      ) : (
+        categories.map((categoryData) => (
+          <div
+            key={categoryData.category.searchTerm}
+            className="category-container"
+          >
+            <div className="category-header">
+              <h2>{categoryData.category.name}</h2>
+              <button
+                className="view-more-button"
+                onClick={() =>
+                  navigate(`/list/${categoryData.category.searchTerm}`)
+                }
+              >
+                Voir plus
+              </button>
+            </div>
+            <div className="row">
+              {categoryData.books.map((book) => (
+                <Card key={book.id} book={book.volumeInfo} />
+              ))}
+            </div>
+          </div>
+        ))
+      )}
 
       <Footer />
     </div>
