@@ -4,7 +4,8 @@ class Identity::PasswordResetsController < ApplicationController
   before_action :set_user, only: :update
 
   def edit
-    head :no_content
+    redirect_to 'http://172.25.54.63:3001/resetpassword/edit?sid=' + params[:sid], allow_other_host: true
+
   end
 
   def create

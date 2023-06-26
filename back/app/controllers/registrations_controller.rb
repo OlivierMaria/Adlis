@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
       @session = @user.sessions.create!(expires_at: 3.hours.from_now)
       token = response.set_header "token", @session.signed_id
       send_email_verification
-      render json: {token: token, username: @user.username, user_id: @user.id, session_id: @session.id, user_mail: user.email }, status: :created
+      render json: {token: token, username: @user.username, user_id: @user.id, session_id: @session.id, user_mail: @user.email }, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
