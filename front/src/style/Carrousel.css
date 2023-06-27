@@ -1,14 +1,1 @@
-.carousel-container {
-  width: 1200px; 
-  margin: 0 auto; 
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
-.slider {
-  height: 300px; 
-}
-
-.carousel-container .awssld__controls button.awssld__controls__arrow {
-  color: white;
-}
