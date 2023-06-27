@@ -122,9 +122,7 @@ const Profil = () => {
         <h2>{username}</h2>
         {avatar && <img src={avatar} alt="Avatar" />}
       </div>
-    </div>
-  );
-};
+)}
 
 export default Profil;
 

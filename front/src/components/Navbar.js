@@ -5,6 +5,7 @@ import { FaBook } from "react-icons/fa";
 import logoImg from "../assets/img/logo.png";
 import Dropdown from "./Dropdown.js";
 
+//! Navbar Component
 const Navbar = () => {
   return (
     <>

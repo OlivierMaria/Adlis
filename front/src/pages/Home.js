@@ -12,47 +12,54 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  //! Récupération de la clef API dans le fichier .env.local
   const apiKey = process.env.REACT_APP_MY_KEY;
+
+  //! Récupération de 6 livres pour les catégories et de 40 livres lors de la recherche dans l'input
   const maxResults = 6;
   const searchMaxResults = 40;
   const navigate = useNavigate();
 
+  //! Récupération des données par catégories
+
+  const fetchCategories = async () => {
+    try {
+      const categories = [
+        { name: "Romance", searchTerm: "romance" },
+        { name: "Sport", searchTerm: "sport" },
+        { name: "Business", searchTerm: "business" },
+        { name: "Science Fiction", searchTerm: "science-fiction" },
+        { name: "Mystery", searchTerm: "mystery" },
+      ];
+
+      const baseUrl =
+        "https://www.googleapis.com/books/v1/volumes?q=subject:{genre}";
+
+      const categoryData = await Promise.all(
+        categories.map(async (category) => {
+          const url = `${baseUrl.replace(
+            "{genre}",
+            category.searchTerm
+          )}&maxResults=${maxResults}&key=${apiKey}`;
+          const response = await axios.get(url);
+          const books = response.data.items || [];
+          return { category, books };
+        })
+      );
+      console.log(categoryData);
+
+      setCategories(categoryData);
+    } catch (error) {
+      console.log(error);
+      setCategories([]);
+    }
+  };
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categories = [
-          { name: "Romance", searchTerm: "romance" },
-          { name: "Sport", searchTerm: "sport" },
-          { name: "Business", searchTerm: "business" },
-          { name: "Science Fiction", searchTerm: "science-fiction" },
-          { name: "Mystery", searchTerm: "mystery" },
-        ];
-
-        const baseUrl =
-          "https://www.googleapis.com/books/v1/volumes?q=subject:{genre}";
-
-        const categoryData = await Promise.all(
-          categories.map(async (category) => {
-            const url = `${baseUrl.replace(
-              "{genre}",
-              category.searchTerm
-            )}&maxResults=${maxResults}&key=${apiKey}`;
-            const response = await axios.get(url);
-            const books = response.data.items || [];
-            return { category, books };
-          })
-        );
-
-        setCategories(categoryData);
-      } catch (error) {
-        console.log(error);
-        setCategories([]);
-      }
-    };
-
     fetchCategories();
   }, []);
 
+  //! Récupération des données lors d'une recherche dans l'input
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchTerm.trim() !== "") {
@@ -73,6 +80,7 @@ const Home = () => {
     fetchSearchResults();
   }, [searchTerm]);
 
+  //! Passage de la fonction handleSearch si les résultats sont supérieurs à 0
   const handleSearch = (searchTerm) => {
     if (searchTerm.length >= 0) {
       setSearchTerm(searchTerm);
@@ -113,7 +121,7 @@ const Home = () => {
             </div>
             <div className="row">
               {categoryData.books.map((book) => (
-                <Card key={book.id} book={book.volumeInfo} />
+                <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
               ))}
             </div>
           </div>

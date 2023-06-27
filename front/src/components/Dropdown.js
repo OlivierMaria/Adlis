@@ -2,13 +2,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Dropdown = () => {
-  const parseUserData = localStorage.getItem("token");
-  const currentUser = parseUserData;
-
   const navigate = useNavigate();
   const userDataitems = localStorage.getItem("userData");
   const userData = JSON.parse(userDataitems);
   const token = localStorage.getItem("token");
+  const currentUser = userData;
 
   const logOutRequest = () => {
     axios
@@ -32,8 +30,7 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown">
-    
-   <button>Mon profil</button>
+      <button>Mon profil</button>
       <div className="dropdown-options">
         {currentUser === null ? (
           <>
