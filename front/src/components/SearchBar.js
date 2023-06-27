@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/SearchForm.css";
 
+//! Barre de recherche des livres
 const SearchBar = ({ onSearch }) => {
   return (
     <form

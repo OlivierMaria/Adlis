@@ -8,6 +8,7 @@ const BookPage = () => {
   const { title } = useParams();
   const [book, setBook] = useState(null);
 
+  //! Récuperation du livre par title pour définir l'endpoint
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -52,7 +53,7 @@ const BookPage = () => {
           </button>
         </div>
       </div>
-      <CommentComponent />
+      <CommentComponent book={book} />
     </>
   );
 };
