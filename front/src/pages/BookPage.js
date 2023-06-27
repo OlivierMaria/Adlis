@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import defaultImage from "../assets/img/Nopicture.png";
+import CommentComponent from "../components/CommentComponent.js";
 
 const BookPage = () => {
   const { title } = useParams();
@@ -34,27 +35,25 @@ const BookPage = () => {
   }
 
   return (
-    <div className="book-details ">
-      <div className="left-column ">
-        <img
-          src={book?.imageLinks?.smallThumbnail || defaultImage}
-          alt={book?.title}
-        />
-      </div>
-      <div className="right-column">
-        <h2>{book.title}</h2>
-        <h2>{book.categories}</h2>
-        <h5>{book.description}</h5>
-        <div class="flex gap-4">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+    <>
+      <div className="book-details">
+        <div className="left-column">
+          <img
+            src={book?.imageLinks?.smallThumbnail || defaultImage}
+            alt={book?.title}
+          />
+        </div>
+        <div className="right-column">
+          <h2 className="text-2xl font-semibold mb-2">{book.title}</h2>
+          <h2 className="text-lg font-medium mb-2">{book.categories}</h2>
+          <h5 className="text-sm text-gray-600">{book.description}</h5>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-4">
             Ajouter à mes livres
-          </button>
-          <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-            Ajouter une critique
           </button>
         </div>
       </div>
-    </div>
+      <CommentComponent />
+    </>
   );
 };
 
