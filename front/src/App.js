@@ -39,7 +39,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="books" element={<Books />} />
         <Route path="/list/:category" element={<BookCategory />} />
-        <Route path="books/:title" element={<BookPage book={book} />} />
+        <Route path="books/:id" element={<BookPage />} />
         <Route path="profil" element={<Profil />} />
         {currentUser === null ? (
           <>

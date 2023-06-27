@@ -7,41 +7,61 @@ import CommentComponent from "../components/CommentComponent.js";
 const BookPage = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const [reviews, setReviews] = useState(null);
+  const token = localStorage.getItem("token");
+  console.log(token);
 
-  //! Récuperation du livre par title pour définir l'endpoint
+  const fetchBook = () => {
+    axios
+      .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+      .then((response) => {
+        const book = response.data;
+        setBook(book.volumeInfo);
+      })
+      .catch((error) => {
+        console.log(error);
+        setBook(null);
+      });
+  };
 
-  const fetchBook = async () => {
-    try {
-      const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${id}`
-      );
-      const books = response.data.items || [];
-      if (books.length > 0) {
-        setBook(books[0].volumeInfo);
-        console.log(response.data.items);
-      }
-    } catch (error) {
-      console.log(error);
-      setBook(null);
-    }
+  const fetchReviews = () => {
+    axios
+      .get("http://127.0.0.1:3000/book_reviews", { params: { book_id: id } })
+      .then((response) => {
+        const reviewsData = response.data;
+        setReviews(reviewsData);
+      })
+      .catch((error) => {
+        console.log(error);
+        setReviews(null);
+      });
   };
 
   useEffect(() => {
     fetchBook();
-  }, [id]);
+    fetchReviews();
+  }, []);
 
   if (!book) {
     return <div>Loading...</div>;
   }
 
-  //!
   const handleReview = (data) => {
-    reviewPost(data);
+    const reviewData = {
+      review: data,
+      book_id: id,
+    };
+    reviewPost(reviewData);
   };
 
   const reviewPost = (data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
     axios
-      .post("http://127.0.0.1:3000/book_reviews", data)
+      .post("http://127.0.0.1:3000/book_reviews", data, config)
       .then((response) => {
         console.log("Commentaire posté avec succès");
       })
@@ -50,8 +70,6 @@ const BookPage = () => {
       });
   };
 
-  const bookId = id;
-  console.log(bookId);
   return (
     <>
       <div className="book-details">
@@ -70,7 +88,7 @@ const BookPage = () => {
           </button>
         </div>
       </div>
-      <CommentComponent handleReview={handleReview} />
+      <CommentComponent handleReview={handleReview} reviews={reviews} />
     </>
   );
 };

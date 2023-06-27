@@ -51,6 +51,7 @@ const Form = (props) => {
       required: "Veuillez accepter les conditions d'utilisation",
     },
   };
+
   return (
     <div className="form-container">
       <form
