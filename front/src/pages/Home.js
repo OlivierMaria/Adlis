@@ -22,39 +22,40 @@ const Home = () => {
   const navigate = useNavigate();
 
   //! Récupération des données par catégories
+
+  const fetchCategories = async () => {
+    try {
+      const categories = [
+        { name: "Romance", searchTerm: "romance" },
+        { name: "Sport", searchTerm: "sport" },
+        { name: "Business", searchTerm: "business" },
+        { name: "Science Fiction", searchTerm: "science-fiction" },
+        { name: "Mystery", searchTerm: "mystery" },
+      ];
+
+      const baseUrl =
+        "https://www.googleapis.com/books/v1/volumes?q=subject:{genre}";
+
+      const categoryData = await Promise.all(
+        categories.map(async (category) => {
+          const url = `${baseUrl.replace(
+            "{genre}",
+            category.searchTerm
+          )}&maxResults=${maxResults}&key=${apiKey}`;
+          const response = await axios.get(url);
+          const books = response.data.items || [];
+          return { category, books };
+        })
+      );
+      console.log(categoryData);
+
+      setCategories(categoryData);
+    } catch (error) {
+      console.log(error);
+      setCategories([]);
+    }
+  };
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categories = [
-          { name: "Romance", searchTerm: "romance" },
-          { name: "Sport", searchTerm: "sport" },
-          { name: "Business", searchTerm: "business" },
-          { name: "Science Fiction", searchTerm: "science-fiction" },
-          { name: "Mystery", searchTerm: "mystery" },
-        ];
-
-        const baseUrl =
-          "https://www.googleapis.com/books/v1/volumes?q=subject:{genre}";
-
-        const categoryData = await Promise.all(
-          categories.map(async (category) => {
-            const url = `${baseUrl.replace(
-              "{genre}",
-              category.searchTerm
-            )}&maxResults=${maxResults}&key=${apiKey}`;
-            const response = await axios.get(url);
-            const books = response.data.items || [];
-            return { category, books };
-          })
-        );
-
-        setCategories(categoryData);
-      } catch (error) {
-        console.log(error);
-        setCategories([]);
-      }
-    };
-
     fetchCategories();
   }, []);
 
@@ -120,7 +121,7 @@ const Home = () => {
             </div>
             <div className="row">
               {categoryData.books.map((book) => (
-                <Card key={book.id} book={book.volumeInfo} />
+                <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
               ))}
             </div>
           </div>

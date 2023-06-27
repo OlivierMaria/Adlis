@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "../style/Card.css";
 import defaultImage from "../assets/img/Nopicture.png";
 
-const Card = ({ book }) => {
-
-//! Redirection vers la page /books/title (Title du livre)
+const Card = ({ book, bookId }) => {
+  //! Redirection vers la page /books/title (Title du livre)
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/books/${encodeURIComponent(book.title)}`);
+    navigate(`/books/${bookId}`);
   };
-
 
   return (
     <div className="card-container">
