@@ -1,29 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-const CommentComponent = ({ bookId }) => {
+const CommentComponent = ({ props }) => {
   const [review, setReview] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newComment = {
-      book_id: bookId,
-      review: review,
-    };
-
-    axios
-      .post("/book_reviews", newComment)
-      .then((response) => {
-        // Traitement après la réussite de la requête
-        console.log("Commentaire posté avec succès");
-        // Réinitialiser le champ de saisie du commentaire
-        setReview("");
-      })
-      .catch((error) => {
-        // Traitement en cas d'erreur de la requête
-        console.error("Erreur lors de la publication du commentaire :", error);
-      });
+  const handleSubmit = (review) => {
+    props.handleReview(review);
+    setReview("");
   };
 
   return (
