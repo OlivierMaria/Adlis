@@ -12,11 +12,16 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  //! Récupération de la clef API dans le fichier .env.local
   const apiKey = process.env.REACT_APP_MY_KEY;
+
+  //! Récupération de 6 livres pour les catégories et de 40 livres lors de la recherche dans l'input
   const maxResults = 6;
   const searchMaxResults = 40;
   const navigate = useNavigate();
 
+  //! Récupération des données par catégories
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -53,6 +58,7 @@ const Home = () => {
     fetchCategories();
   }, []);
 
+  //! Récupération des données lors d'une recherche dans l'input
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchTerm.trim() !== "") {
@@ -73,6 +79,7 @@ const Home = () => {
     fetchSearchResults();
   }, [searchTerm]);
 
+  //! Passage de la fonction handleSearch si les résultats sont supérieurs à 0
   const handleSearch = (searchTerm) => {
     if (searchTerm.length >= 0) {
       setSearchTerm(searchTerm);

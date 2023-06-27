@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "../components/Card.js";
 import axios from "axios";
 
 const BookCategory = () => {
+  //! Récupération de la clef API dans le fichier .env.local
   const apiKey = process.env.REACT_APP_MY_KEY;
   const [books, setBooks] = useState([]);
-  const navigate = useNavigate();
   const { category } = useParams();
 
+  //! Récupération de 30 livres par categories
   useEffect(() => {
     const fetchBooks = async () => {
       try {

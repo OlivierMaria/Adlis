@@ -1,13 +1,6 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar.js";
-
 const Books = () => {
-  const { id } = useParams();
-
-  // Utilisez l'ID pour récupérer les détails du livre de votre API ou de votre source de données
-  // par exemple, vous pouvez effectuer une requête pour obtenir les détails du livre en utilisant l'ID
-
+  //! Feature à mettre en place
   return (
     <div>
       <h1>Books</h1>
