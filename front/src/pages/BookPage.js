@@ -5,36 +5,53 @@ import defaultImage from "../assets/img/Nopicture.png";
 import CommentComponent from "../components/CommentComponent.js";
 
 const BookPage = () => {
-  const { title } = useParams();
+  const { id } = useParams();
   const [book, setBook] = useState(null);
 
   //! Récuperation du livre par title pour définir l'endpoint
-  useEffect(() => {
-    const fetchBook = async () => {
-      try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-            title
-          )}`
-        );
-        const books = response.data.items || [];
-        if (books.length > 0) {
-          setBook(books[0].volumeInfo);
-          console.log(response.data.items);
-        }
-      } catch (error) {
-        console.log(error);
-        setBook(null);
-      }
-    };
 
+  const fetchBook = async () => {
+    try {
+      const response = await axios.get(
+        `https://www.googleapis.com/books/v1/volumes?q=${id}`
+      );
+      const books = response.data.items || [];
+      if (books.length > 0) {
+        setBook(books[0].volumeInfo);
+        console.log(response.data.items);
+      }
+    } catch (error) {
+      console.log(error);
+      setBook(null);
+    }
+  };
+
+  useEffect(() => {
     fetchBook();
-  }, [title]);
+  }, [id]);
 
   if (!book) {
     return <div>Loading...</div>;
   }
 
+  //!
+  const handleReview = (data) => {
+    reviewPost(data);
+  };
+
+  const reviewPost = (data) => {
+    axios
+      .post("http://127.0.0.1:3000/book_reviews", data)
+      .then((response) => {
+        console.log("Commentaire posté avec succès");
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la publication du commentaire :", error);
+      });
+  };
+
+  const bookId = id;
+  console.log(bookId);
   return (
     <>
       <div className="book-details">
@@ -53,7 +70,7 @@ const BookPage = () => {
           </button>
         </div>
       </div>
-      <CommentComponent book={book} />
+      <CommentComponent handleReview={handleReview} />
     </>
   );
 };
