@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Profil = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [email, setEmail] = useState('');
-  const [emailConfirm, setEmailConfirm] = useState('');
-  const [avatar, setAvatar] = useState('');
-  const userData = localStorage.getItem('userData');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailConfirm, setEmailConfirm] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const userData = localStorage.getItem("userData");
   const userDataParse = JSON.parse(userData);
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,15 +53,14 @@ const Profil = () => {
           username,
           password,
           password_confirmation: passwordConfirm,
-          // utilisation du useForm 
           email,
           email_confirmation: emailConfirm,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log('Profil mis à jour avec succès:', response.data);
+      console.log("Profil mis à jour avec succès:", response.data);
     } catch (error) {
-      console.error('Erreur lors de la mise à jour du profil:', error);
+      console.error("Erreur lors de la mise à jour du profil:", error);
     }
   };
 
@@ -74,15 +71,19 @@ const Profil = () => {
   const fetchUserData = async () => {
     try {
       const url = `http://localhost:3000/sessions/${userDataParse.session_id}`;
-      const response = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } });
+      const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setUsername(response.data.username);
-    } catch (error) { 
-      localStorage.clear()
-      return navigate ('/signin')
-      console.error('Erreur lors de la récupération des données utilisateur:', error);
+    } catch (error) {
+      localStorage.clear();
+      navigate("/signin");
+      console.error(
+        "Erreur lors de la récupération des données utilisateur:",
+        error
+      );
     }
   };
-
 
   return (
     <div>
@@ -93,12 +94,20 @@ const Profil = () => {
       <br />
       <label>
         Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
+        <input
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
       </label>
       <br />
       <label>
         Password Confirm:
-        <input type="password" value={passwordConfirm} onChange={handlePasswordConfirmChange} />
+        <input
+          type="password"
+          value={passwordConfirm}
+          onChange={handlePasswordConfirmChange}
+        />
       </label>
       <br />
       <label>
@@ -108,7 +117,11 @@ const Profil = () => {
       <br />
       <label>
         Email Confirm:
-        <input type="email" value={emailConfirm} onChange={handleEmailConfirmChange} />
+        <input
+          type="email"
+          value={emailConfirm}
+          onChange={handleEmailConfirmChange}
+        />
       </label>
       <br />
       <label>
@@ -122,7 +135,8 @@ const Profil = () => {
         <h2>{username}</h2>
         {avatar && <img src={avatar} alt="Avatar" />}
       </div>
-)}
+    </div>
+  );
+};
 
 export default Profil;
-
