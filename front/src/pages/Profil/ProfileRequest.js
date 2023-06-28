@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProfileRequest = {
   fetchProfileData: async () => {
@@ -24,10 +25,10 @@ const ProfileRequest = {
     }
   },
 
-  updatePassword: async (newPassword, currentPassword) => {
+  updatePassword: async (currentPassword, newPassword) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(currentPassword + " updated", newPassword);
+      console.log(" current" + currentPassword + " updated", newPassword);
       await axios.put(
         `http://localhost:3000/password`,
         {
@@ -42,8 +43,10 @@ const ProfileRequest = {
         }
       );
       console.log("Mot de passe mis à jour avec succès");
+      alert("mise a jour avec succes, vous devriez vous reconneceter");
+      localStorage.clear();
     } catch (error) {
-      console.error("Erreur lors de la mise à jour du mot de passe :", error);
+      alert("mot de passe actuel n'est pas valid");
       throw error;
     }
   },
@@ -64,6 +67,7 @@ const ProfileRequest = {
       );
       console.log("Email mis à jour avec succès");
     } catch (error) {
+      alert("adresse mail déja utilisée");
       console.error("Erreur lors de la mise à jour de l'email :", error);
       throw error;
     }
@@ -84,7 +88,9 @@ const ProfileRequest = {
         }
       );
       console.log("Nom d'utilisateur mis à jour avec succès");
+      alert("Nom d'utilisateur mis à jour avec succès");
     } catch (error) {
+      alert(error);
       console.error(
         "Erreur lors de la mise à jour du nom d'utilisateur :",
         error
