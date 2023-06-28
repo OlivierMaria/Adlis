@@ -39,7 +39,7 @@ const Dropdown = () => {
           </>
         ) : (
           <>
-            <Link to="/profil">Profil</Link>
+            <Link to="/profile">Profil</Link>
             <button onClick={logOutRequest}>Deconnexion</button>
           </>
         )}

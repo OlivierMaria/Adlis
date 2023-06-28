@@ -1,0 +1,33 @@
+.edit-profile-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.edit-profile-form-container label {
+  margin-bottom: 10px;
+}
+
+.edit-profile-form-container input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-form-container input:focus {
+  outline: none;
+  background-color: #e0e0e0;
+}
+
+.edit-profile-form-container button {
+  padding: 8px 16px;
+  margin-right: 10px;
+}
+
+.edit-profile-form-container .error-message {
+  color: red;
+  margin-top: 10px;
+}
