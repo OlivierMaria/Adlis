@@ -36,3 +36,9 @@
   .row p {
     text-align: center;
   }
+
+  .barre {
+    width: 70%;
+    height: 1px;
+    background-color: #000;
+  }

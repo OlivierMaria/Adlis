@@ -2,44 +2,18 @@
   margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-}
-
-.card-item {
-  background-color: #ffffff;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  grid-gap: 50px;
   text-align: center;
-  transition: transform 0.3s ease;
 }
 
-.card-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-}
 
 .card-image {
+  margin-top: 20px;
   width: 100%;
   height: 150px;
   object-fit: contain;
-  border-radius: 5px;
+  border-radius: 25px;
   margin-bottom: 10px;
 }
 
-.card-item h2 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: #333333;
-}
 
-.card-item p {
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #777777;
-}
-
-.card-item p:last-child {
-  margin-bottom: 0;
-}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaArrowUp } from "react-icons/fa";
 import "../style/Home.css";
 import Card from "../components/Card.js";
 import SearchBar from "../components/SearchBar.js";
@@ -12,25 +13,21 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  //! Récupération de la clef API dans le fichier .env.local
   const apiKey = process.env.REACT_APP_MY_KEY;
-
-  //! Récupération de 6 livres pour les catégories et de 40 livres lors de la recherche dans l'input
-  const maxResults = 6;
+  const maxResults = 5;
   const searchMaxResults = 40;
   const navigate = useNavigate();
-
-  //! Récupération des données par catégories
 
   const fetchCategories = async () => {
     try {
       const categories = [
-        { name: "Romance", searchTerm: "romance" },
-        { name: "Sport", searchTerm: "sport" },
-        { name: "Business", searchTerm: "business" },
-        { name: "Science Fiction", searchTerm: "science-fiction" },
-        { name: "Mystery", searchTerm: "mystery" },
+        { name: "Romance ❤️", searchTerm: "romance" },
+        { name: "Sport ⛹️‍♂️", searchTerm: "sport" },
+        { name: "Business 💼", searchTerm: "business" },
+        { name: "Science Fiction 👽", searchTerm: "science-fiction" },
+        { name: "Mystery 🕵️", searchTerm: "mystery" },
       ];
 
       const baseUrl =
@@ -47,7 +44,6 @@ const Home = () => {
           return { category, books };
         })
       );
-      console.log(categoryData);
 
       setCategories(categoryData);
     } catch (error) {
@@ -55,11 +51,11 @@ const Home = () => {
       setCategories([]);
     }
   };
+
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  //! Récupération des données lors d'une recherche dans l'input
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchTerm.trim() !== "") {
@@ -80,56 +76,88 @@ const Home = () => {
     fetchSearchResults();
   }, [searchTerm]);
 
-  //! Passage de la fonction handleSearch si les résultats sont supérieurs à 0
   const handleSearch = (searchTerm) => {
     if (searchTerm.length >= 0) {
       setSearchTerm(searchTerm);
     }
   };
 
+  const handleScroll = () => {
+    if (window.pageYOffset > 300) {
+      setShowBackToTop(true);
+    } else {
+      setShowBackToTop(false);
+    }
+  };
+
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="home-container">
-      <Carrousel />
-      <SearchBar onSearch={handleSearch} />
-      {searchTerm.trim() !== "" && searchResults.length > 0 ? (
-        <div className="category-container">
-          <div className="category-header">
-            <h2>Résultats de recherche pour "{searchTerm}"</h2>
-          </div>
-          <div className="row">
-            {searchResults.map((book) => (
-              <Card key={book.id} book={book.volumeInfo} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        categories.map((categoryData) => (
-          <div
-            key={categoryData.category.searchTerm}
-            className="category-container"
-          >
+    <>
+      <div className="home-container">
+        <Carrousel />
+        <SearchBar onSearch={handleSearch} />
+        {searchTerm.trim() !== "" && searchResults.length > 0 ? (
+          <div className="category-container">
             <div className="category-header">
-              <h2>{categoryData.category.name}</h2>
-              <button
-                className="view-more-button"
-                onClick={() =>
-                  navigate(`/list/${categoryData.category.searchTerm}`)
-                }
-              >
-                Voir plus
-              </button>
+              <h2>Résultats de recherche pour "{searchTerm}"</h2>
             </div>
             <div className="row">
-              {categoryData.books.map((book) => (
-                <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
+              {searchResults.map((book) => (
+                <Card key={book.id} book={book.volumeInfo} />
               ))}
             </div>
           </div>
-        ))
-      )}
+        ) : (
+          categories.map((categoryData) => (
+            <div
+              key={categoryData.category.searchTerm}
+              className="category-container"
+            >
+              <div className="category-header flex justify-between items-center mt-5">
+                <h2 className="text-left">
+                  Catégories {categoryData.category.name}
+                </h2>
+                <div className="barre"></div>
+                <button
+                  className="ml-2"
+                  onClick={() =>
+                    navigate(`/list/${categoryData.category.searchTerm}`)
+                  }
+                >
+                  Voir plus
+                </button>
+              </div>
+              <div className="row">
+                {categoryData.books.map((book) => (
+                  <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
+                ))}
+              </div>
+            </div>
+          ))
+        )}
 
+        {showBackToTop && (
+          <button
+            className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 text-white bg-gray-800 rounded-full shadow-lg focus:outline-none"
+            onClick={handleBackToTop}
+            aria-label="Back to top"
+          >
+            <FaArrowUp />
+          </button>
+        )}
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
