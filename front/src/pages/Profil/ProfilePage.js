@@ -8,23 +8,23 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const data = await ProfileRequest.fetchProfileData();
-        setProfileData(data);
-      } catch (error) {
-        localStorage.clear();
-        setProfileData(null);
-        navigate("/");
-        console.error(
-          "Erreur lors de la récupération des données du profil :",
-          error
-        );
-      }
-    };
     fetchProfileData();
   }, []);
 
+  const fetchProfileData = async () => {
+    try {
+      const data = await ProfileRequest.fetchProfileData();
+      setProfileData(data);
+    } catch (error) {
+      localStorage.clear();
+      setProfileData(null);
+      navigate("/");
+      console.error(
+        "Erreur lors de la récupération des données du profil :",
+        error
+      );
+    }
+  };
   const handleEdit = async (field, updatedValue, currentPassword) => {
     try {
       switch (field) {
@@ -40,6 +40,7 @@ const ProfilePage = () => {
         default:
           break;
       }
+      fetchProfileData();
     } catch (error) {
       console.error("Erreur lors de la mise à jour du profil :", error);
     }

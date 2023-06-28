@@ -12,8 +12,8 @@ const DisplayProfileInfo = ({ profileData, onEdit }) => {
     setActiveField(null);
   };
 
-  const handleSaveEdit = (field, updatedValue) => {
-    onEdit(field, updatedValue);
+  const handleSaveEdit = (field, updatedValue, currentPassword) => {
+    onEdit(field, updatedValue, currentPassword);
     setActiveField(null);
   };
 
@@ -56,7 +56,7 @@ const DisplayProfileInfo = ({ profileData, onEdit }) => {
         {activeField === "password" && (
           <EditProfileForm
             field="password"
-            defaultValue=""
+            defaultValue="*************"
             onSave={handleSaveEdit}
             onCancel={handleCancelEdit}
             requireCurrentPassword
