@@ -33,9 +33,7 @@ const Navbar = () => {
         <div className="right-section">
           <ul className="profile-items">
             <li>
-              <Link to="/books">
-                <FaBook />
-              </Link>
+              <Link to="/books">Coup d'❤️</Link>
             </li>
             <li>
               <Dropdown />
