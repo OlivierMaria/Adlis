@@ -8,7 +8,7 @@ import Books from "./pages/Books.js";
 // import Footer from "./components/Footer.js";
 // import SignUp from "./pages/SignUp.js";
 import BookPage from "./pages/BookPage.js";
-import Profil from "./pages/Profil.js";
+
 // import LoginPage from "./pages/LoginPage.js";
 import SignInPage from "./pages/SignInPage.js";
 import SignUpPage from "./pages/SignUpPage.js";
@@ -19,6 +19,7 @@ import Navbar from "./components/Navbar.js";
 import BookCategory from "./pages/BookCategory.js";
 import "./App.css";
 import NewPassword from "./pages/reset_password/NewPassword.js";
+import ProfilePage from "./pages/Profil/ProfilePage.js";
 
 const App = () => {
   const book = {
@@ -40,15 +41,17 @@ const App = () => {
         <Route path="books" element={<Books />} />
         <Route path="/list/:category" element={<BookCategory />} />
         <Route path="books/:id" element={<BookPage />} />
-        <Route path="profil" element={<Profil />} />
         {currentUser === null ? (
           <>
-            <Route path="signup" element={<SignUpPage />} />
-            <Route path="resetpassword" element={<ResetPassword />} />
-            <Route path="resetpassword/:edit" element={<NewPassword />} />
-            <Route path="signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/resetpassword/:edit" element={<NewPassword />} />
+            <Route path="/signin" element={<SignInPage />} />
           </>
-        ) : null}
+        ) : (
+          <Route path="/profile" element={<ProfilePage />} />
+        )}
+
         <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>

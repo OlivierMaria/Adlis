@@ -1,0 +1,34 @@
+/* DisplayProfileInfo.js */
+.display-profile-info {
+  margin-top: 2rem;
+}
+
+.display-profile-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.display-profile-info p {
+  margin-bottom: 0.5rem;
+}
+
+.display-profile-info .info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.display-profile-info .info-item .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  fill: #007bff;
+}
+
+.display-profile-info .info-item .label {
+  font-weight: bold;
+}
+
+.display-profile-info .info-item .value {
+  color: #888;
+}

@@ -4,11 +4,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "./Dropdown.css";
-@import "./signUpPage.css";
-@import "./ResetPassword.css";
-@import "./BookPage.css";
-@import "./form.css";
+@import "./components/Dropdown.css";
+@import "./pages/signUpPage.css";
+@import "./pages/ResetPassword.css";
+@import "./pages/BookPage.css";
+@import "./components/form.css";
+@import "./pages/ProfilePage.css";
+@import "./pages/EditProfileForm.css";
+@import "./pages/DisplayProfileInfo.css";
 
 body {
   margin: 0;
