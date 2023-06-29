@@ -5,20 +5,23 @@ import axios from "axios";
 
 const NewPassword = () => {
   const navigate = useNavigate();
-
   const handleSubmitRequest = (data) => {
-    handleNewPassword(data);
+    handlePasswordReset(data);
   };
-  const handleNewPassword = (data) => {
+  const handlePasswordReset = (data) => {
+    const token = new URLSearchParams(window.location.search).get("sid");
+    data.sid = token;
     axios
-      .patch("http://127.0.0.1:3000/identity/password_reset", data)
-      .then((res) => {
-        navigate("/login");
+      .patch(`http://127.0.0.1:3000/identity/password_reset`, data)
+      .then((response) => {
+        alert("Le mot de passe a été mis à jour avec succès");
+        navigate("/");
       })
       .catch((error) => {
-        console.error(error);
+        alert("erreur lors de la mise a jour du mot de passe");
       });
   };
+
   return (
     <div>
       <Form

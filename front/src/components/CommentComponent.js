@@ -4,7 +4,7 @@ const CommentComponent = (props) => {
   const { handleReview, handleDelete } = props;
   const userParse = JSON.parse(localStorage.getItem("userData"));
   const currentUser = localStorage.getItem("token");
-  const userId = userParse.user_id;
+  const userId = userParse ? userParse.user_id : null;
 
   const {
     register,
@@ -66,7 +66,7 @@ const CommentComponent = (props) => {
           props.reviews.map((item, index) => (
             <li key={index}>
               <strong>{item[2]} :</strong> {item[3]}
-              {userId === item[1] && (
+              {userId !== null && userId === item[1] && (
                 <button
                   onClick={() => handleDelete(item[0])}
                   style={{ color: "red" }}
