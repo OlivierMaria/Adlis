@@ -1,0 +1,104 @@
+
+  
+  .form-container {
+    margin-top: 40px;
+    max-width: 500px;
+    max-height: 712px;
+    margin-left: 350px;
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  /* Ajoutez ces règles pour centrer le contenu dans la section */
+  .form-container,
+  .contact-video-container {
+    flex: 1; /* Permet aux éléments de s'étirer pour occuper l'espace disponible */
+  }
+  
+  .form-container h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .form-container input,
+  .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-container textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  
+  .form-container button {
+    background-color: #4a90e2;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-container button:hover {
+    background-color: #3066a6;
+  }
+  
+  /* Ajoutez la classe "error" à un champ de formulaire pour afficher un style d'erreur */
+  .form-container .error {
+    border-color: #ff0000;
+  }
+  
+  .form-container .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  
+  /* Ajoutez la classe "success" au formulaire pour afficher un style de succès */
+  .form-container.success {
+    background-color: #d0f0c0;
+    border-color: #a3e9a4;
+  }
+  
+  .form-container.success h1 {
+    color: #2d862d;
+  }
+  
+  .form-container.success .form-message {
+    color: #2d862d;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .textarea-no-resize {
+    resize: none;
+  }
+
+  .contact-video-container {
+    margin-bottom: 40px;
+    margin-right: 300px;
+  }
+  
+  .contact-video {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
