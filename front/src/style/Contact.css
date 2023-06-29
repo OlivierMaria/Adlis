@@ -9,6 +9,7 @@
     background-color: #f5f7fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
   }
   
 
@@ -21,7 +22,7 @@
   .form-container h1 {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #333;
   }
   
@@ -88,17 +89,22 @@
     margin-top: 10px;
   }
   
-  .textarea-no-resize {
+  .mb-4 > textarea{
     resize: none;
   }
 
   .contact-video-container {
     margin-bottom: 40px;
     margin-right: 300px;
+    margin-bottom: 100px;
+    margin-top: 41px;
+    border-radius: 8px;
   }
   
   .contact-video {
+    height: 91%;
     width: 100%;
     border-radius: 8px;
+    margin-bottom: 25px;
   }
   
