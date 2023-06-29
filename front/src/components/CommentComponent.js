@@ -1,14 +1,17 @@
 import { useForm } from "react-hook-form";
 
 const CommentComponent = (props) => {
-  const { handleReview } = props;
+  const { handleReview, handleDelete } = props;
+  const userParse = JSON.parse(localStorage.getItem("userData"));
   const currentUser = localStorage.getItem("token");
+  const userId = userParse.user_id;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
+    reset,
   } = useForm();
 
   const validOptions = {
@@ -27,6 +30,7 @@ const CommentComponent = (props) => {
   const handleSubmitData = (data) => {
     if (currentUser) {
       handleReview(data.review);
+      reset();
     } else {
       setError("user", {
         type: "manual",
@@ -37,12 +41,12 @@ const CommentComponent = (props) => {
 
   return (
     <div>
-      <h2>Commentaires</h2>
+      <h2>Critiques</h2>
       <form onSubmit={handleSubmit(handleSubmitData)}>
         <input
           type="text"
           {...register("review", validOptions.review)}
-          placeholder="Entrez votre commentaire"
+          placeholder="Entrez votre critique"
         />
         {errors.user && (
           <small className="text-danger">{errors.user.message}</small>
@@ -55,13 +59,21 @@ const CommentComponent = (props) => {
       </form>
       <br />
 
-      <h1>Critiques</h1>
+      <h1>Critiques recentes</h1>
       <br />
       <ul>
         {props.reviews !== null ? (
           props.reviews.map((item, index) => (
             <li key={index}>
-              <strong>{item[0]} :</strong> {item[1]}
+              <strong>{item[2]} :</strong> {item[3]}
+              {userId === item[1] && (
+                <button
+                  onClick={() => handleDelete(item[0])}
+                  style={{ color: "red" }}
+                >
+                  Delete
+                </button>
+              )}
             </li>
           ))
         ) : (

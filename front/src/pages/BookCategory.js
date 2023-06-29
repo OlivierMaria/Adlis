@@ -59,7 +59,7 @@ const BookCategory = () => {
       <h1>Voici le rendu de la catégorie : {category}</h1>
       <div className="row">
         {books.map((book) => (
-          <Card key={book.id} book={book.volumeInfo} />
+          <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
         ))}
       </div>
       {showBackToTop && (
