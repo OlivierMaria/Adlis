@@ -1,9 +1,13 @@
 footer {
   bottom: 0;
   width: 100%;
-  padding: 0.5em; /* Modifier la valeur pour ajuster la hauteur */
-  background-color: rgba(165, 208, 201, 0.946);
-  color: rgb(6, 17, 28);
-  display: flex;
-  place-content: center;
+}
+
+.logo-size {
+  height: 50px;
+  margin-left: 25px;
+}
+
+.text-center {
+  text-align: center;
 }
