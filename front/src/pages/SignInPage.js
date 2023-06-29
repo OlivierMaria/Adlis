@@ -44,6 +44,7 @@ const SignInPage = () => {
         password="Mot de passe"
         button="se connecter"
         sendData={handleSubmitRequest}
+        page="signin"
       />
       <div className="signp-link">
         <span>
