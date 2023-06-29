@@ -9,7 +9,6 @@ const BookPage = () => {
   const [book, setBook] = useState(null);
   const [reviews, setReviews] = useState(null);
   const token = localStorage.getItem("token");
-  console.log(token);
 
   const fetchBook = () => {
     axios
@@ -30,6 +29,7 @@ const BookPage = () => {
       .then((response) => {
         const reviewsData = response.data;
         setReviews(reviewsData);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -46,6 +46,10 @@ const BookPage = () => {
     return <div>Loading...</div>;
   }
 
+  const handleReviewDelete = (id) => {
+    reviewDelete(id);
+    console.log("id" + id);
+  };
   const handleReview = (data) => {
     const reviewData = {
       review: data,
@@ -64,12 +68,31 @@ const BookPage = () => {
       .post("http://127.0.0.1:3000/book_reviews", data, config)
       .then((response) => {
         console.log("Commentaire posté avec succès");
+        // alert("Commentaire posté avec succès");
+        fetchReviews();
       })
       .catch((error) => {
         console.error("Erreur lors de la publication du commentaire :", error);
       });
   };
 
+  const reviewDelete = (id) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .delete(`http://127.0.0.1:3000/book_reviews/${id}`, config)
+      .then((response) => {
+        console.log("Commentaire suprimé avec succès");
+
+        fetchReviews();
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la supressiondu commentaire :", error);
+      });
+  };
   return (
     <>
       <div className="book-details">
@@ -89,7 +112,11 @@ const BookPage = () => {
           </button>
         </div>
       </div>
-      <CommentComponent handleReview={handleReview} reviews={reviews} />
+      <CommentComponent
+        handleDelete={handleReviewDelete}
+        handleReview={handleReview}
+        reviews={reviews}
+      />
     </>
   );
 };
