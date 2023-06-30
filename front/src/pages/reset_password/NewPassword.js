@@ -15,7 +15,7 @@ const NewPassword = () => {
       .patch(`http://127.0.0.1:3000/identity/password_reset`, data)
       .then((response) => {
         alert("Le mot de passe a été mis à jour avec succès");
-        navigate("/");
+        navigate("/signin");
       })
       .catch((error) => {
         alert("erreur lors de la mise a jour du mot de passe");

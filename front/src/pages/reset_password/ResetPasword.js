@@ -14,9 +14,12 @@ const ResetPassword = () => {
     axios
       .post("http://127.0.0.1:3000/identity/password_reset", data)
       .then((res) => {
-        navigate("/");
+        navigate("/signin");
+        alert("si l'email est valide et verifié vous receverez un email");
       })
       .catch((error) => {
+        navigate("/signin");
+        alert("si l'email est valide et verifié vous receverez un email");
         console.error(error);
       });
   };
