@@ -1,15 +1,17 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmitRequest = (data) => {
     handleResetPassword(data);
   };
+
   const handleResetPassword = (data) => {
     axios
       .post(
@@ -18,11 +20,21 @@ const ResetPassword = () => {
       )
       .then((res) => {
         navigate("/signin");
-        alert("si l'email est valide et verifié vous receverez un email");
+        alert("Si l'e-mail est valide et vérifié, vous recevrez un e-mail.");
       })
       .catch((error) => {
         navigate("/signin");
-        alert("si l'email est valide et verifié vous receverez un email");
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          setError(error.response.data.error);
+        } else {
+          setError(
+            "Une erreur s'est produite lors de la réinitialisation du mot de passe."
+          );
+        }
         console.error(error);
       });
   };
@@ -32,14 +44,15 @@ const ResetPassword = () => {
       <div>
         <h2>Récupération de mot de passe</h2>
         <p>
-          Si vous êtes déjà enregistré chez nous, vous recevrez un email avec
+          Si vous êtes déjà enregistré chez nous, vous recevrez un e-mail avec
           les instructions pour réinitialiser votre mot de passe.
         </p>
         <Form
           email="Adresse Email"
-          button="envoyer"
+          button="Envoyer"
           sendData={handleSubmitRequest}
         />
+        {error && <p className="error">{error}</p>}
         <br />
         <div className="form-group">
           <Link to="/" className="form-link">
