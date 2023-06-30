@@ -43,9 +43,8 @@ const SignUpPage = () => {
         Conditions="conditions generales "
         button="s'inscrire"
         sendData={handleSubmitRequest}
+        page="signup"
       />
-      <h6>déjà enregistré ?</h6>
-      <Link to="/signin">Sign in</Link>
     </>
   );
 };
