@@ -110,10 +110,10 @@ const Contact = () => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex-container">
         <div className="form-container">
           <form
-            className="max-w-md mx-auto"
+            // className="max-w-md mx-auto"
             action="https://getform.io/f/b1134f77-cc6e-42bf-89a4-376bbbf20da8"
             method="POST"
             encType="multipart/form-data"

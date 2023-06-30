@@ -1,5 +1,4 @@
 import React from "react";
-
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "../components/Form";
@@ -46,16 +45,6 @@ const SignInPage = () => {
         sendData={handleSubmitRequest}
         page="signin"
       />
-      <div className="signp-link">
-        <span>
-          <h6>pas encore enregistré ?</h6>
-          <Link to="/signup">Sign up</Link>
-        </span>
-        <span>
-          <h6>mot de passe oublié ?</h6>
-          <Link to="/resetpassword">Forgot password</Link>
-        </span>
-      </div>
     </>
   );
 };

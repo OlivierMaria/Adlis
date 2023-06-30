@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import bookImage from "../assets/img/book-img.png";
+import "../style/Form.css";
+import { Link } from "react-router-dom";
 
 const Form = (props) => {
   const handleError = (errors) => {};
@@ -54,106 +55,120 @@ const Form = (props) => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/2 pr-8">
-        <img src={bookImage} alt="Book" className="h-full" />
-      </div>
-      <div className="w-1/2 pl-8">
-        <div className="form-container">
-          <form
-            className="form"
-            onSubmit={handleSubmit(handleSubmitRequest, handleError)}
-          >
-            {username && (
-              <>
-                <label>{username}</label>
-                <input
-                  type="text"
-                  placeholder={usernamePlaceholder}
-                  {...register("username", validOptions.username)}
-                />
-                <small className="text-danger">
-                  {errors?.username && errors.username.message}
-                </small>
-              </>
-            )}
+    <div className="form-container">
+      <form
+        className="form"
+        onSubmit={handleSubmit(handleSubmitRequest, handleError)}
+      >
+        {username && (
+          <div className="form-group">
+            <label htmlFor="username">{username}</label>
+            <input
+              type="text"
+              id="username"
+              placeholder={usernamePlaceholder}
+              {...register("username", validOptions.username)}
+            />
+            <small className="text-danger">
+              {errors?.username && errors.username.message}
+            </small>
+          </div>
+        )}
 
-            {email && (
-              <>
-                <label>{email}</label>
-                <input
-                  type="email"
-                  placeholder={emailPlaceholder}
-                  {...register("email", validOptions.email)}
-                />
-                <small className="text-danger">
-                  {errors?.email && errors.email.message}
-                </small>
-              </>
-            )}
+        {email && (
+          <div className="form-group">
+            <label htmlFor="email">{email}</label>
+            <input
+              type="email"
+              id="email"
+              placeholder={emailPlaceholder}
+              {...register("email", validOptions.email)}
+            />
+            <small className="text-danger">
+              {errors?.email && errors.email.message}
+            </small>
+          </div>
+        )}
 
-            {password && (
-              <>
-                <label>{password}</label>
-                <input
-                  type="password"
-                  // placeholder={passwordPlaceholder}
-                  {...register("password", validOptions.password)}
-                />
+        {password && (
+          <div className="form-group">
+            <label htmlFor="password">{password}</label>
+            <input
+              type="password"
+              id="password"
+              {...register("password", validOptions.password)}
+            />
 
-                {page === "signin" && errors.password && (
-                  <>
-                    {errors.password.type === "required" && (
-                      <small className="text-danger">mot de passe requis</small>
-                    )}
-                  </>
+            {page === "signin" && errors.password && (
+              <>
+                {errors.password.type === "required" && (
+                  <small className="text-danger">mot de passe requis</small>
                 )}
               </>
             )}
+          </div>
+        )}
 
-            {passwordConfirmation && (
-              <>
-                <label>{passwordConfirmation}</label>
-                <input
-                  type="password"
-                  placeholder={passwordConfirmationPlaceholder}
-                  {...register(
-                    "password_confirmation",
-                    validOptions.password_confirmation
-                  )}
-                />
-                <small className="text-danger">
-                  {errors?.password_confirmation &&
-                    errors.password_confirmation.message}
-                </small>
-              </>
-            )}
-            {Conditions && (
-              <>
-                <label htmlFor="accept_conditions">{Conditions}</label>
-                <input
-                  type="checkbox"
-                  id="accept_conditions"
-                  {...register(
-                    "accept_conditions",
-                    validOptions.accept_conditions
-                  )}
-                />
+        {passwordConfirmation && (
+          <div className="form-group">
+            <label htmlFor="passwordConfirmation">{passwordConfirmation}</label>
+            <input
+              type="password"
+              id="passwordConfirmation"
+              placeholder={passwordConfirmationPlaceholder}
+              {...register(
+                "password_confirmation",
+                validOptions.password_confirmation
+              )}
+            />
+            <small className="text-danger">
+              {errors?.password_confirmation &&
+                errors.password_confirmation.message}
+            </small>
+          </div>
+        )}
 
-                <small className="text-danger">
-                  {errors?.accept_conditions &&
-                    errors.accept_conditions.message}
-                </small>
-              </>
-            )}
-            {button && (
-              <>
-                <button>{button}</button>
-              </>
-            )}
-          </form>
+        {Conditions && (
+          <div className="form-group">
+            <input
+              type="checkbox"
+              id="accept_conditions"
+              {...register("accept_conditions", validOptions.accept_conditions)}
+            />
+            <label htmlFor="accept_conditions">{Conditions}</label>
+            <small className="text-danger">
+              {errors?.accept_conditions && errors.accept_conditions.message}
+            </small>
+          </div>
+        )}
+
+        {button && (
+          <div className="form-group">
+            <button type="submit" className="submit-button">
+              {button}
+            </button>
+          </div>
+        )}
+      </form>
+      {page === "signin" && (
+        <div className="signp-link">
+          <span>
+            <h6>pas encore enregistré ?</h6>
+            <Link to="/signup">Sign up</Link>
+          </span>
+          <span>
+            <h6>mot de passe oublié ?</h6>
+            <Link to="/resetpassword">Forgot password</Link>
+          </span>
         </div>
-      </div>
+      )}
+
+      {page === "signup" && (
+        <>
+          <h6>déjà enregistré ?</h6>
+          <Link to="/signin">Sign in</Link>
+        </>
+      )}
     </div>
   );
 };
