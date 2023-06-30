@@ -2,6 +2,38 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ProfileRequest = {
+  deleteAccount: async () => {
+    try {
+      const confirmDelete = window.confirm(
+        "Voulez-vous vraiment supprimer votre compte ?"
+      );
+      if (!confirmDelete) {
+        return;
+      }
+
+      const userDataItems = localStorage.getItem("userData");
+      const userData = JSON.parse(userDataItems);
+      const token = localStorage.getItem("token");
+      await axios.delete(
+        `https://adlis-077af6a0b065.herokuapp.com/users/${userData.user_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Compte utilisateur supprimé avec succès");
+      alert("Compte utilisateur supprimé avec succès");
+      localStorage.clear();
+    } catch (error) {
+      console.error(
+        "Erreur lors de la suppression du compte utilisateur :",
+        error
+      );
+      throw error;
+    }
+  },
+
   fetchProfileData: async () => {
     try {
       const userDataItems = localStorage.getItem("userData");

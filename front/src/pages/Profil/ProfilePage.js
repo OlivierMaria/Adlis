@@ -25,6 +25,23 @@ const ProfilePage = () => {
       );
     }
   };
+  const deleteProfileData = async () => {
+    try {
+      const data = await ProfileRequest.deleteAccount();
+      setProfileData(data);
+      localStorage.clear();
+      setProfileData(null);
+      navigate("/");
+    } catch (error) {
+      localStorage.clear();
+      setProfileData(null);
+      navigate("/");
+      console.error(
+        "Erreur lors de la récupération des données du profil :",
+        error
+      );
+    }
+  };
 
   const handleEdit = async (field, updatedValue, currentPassword) => {
     try {
@@ -57,6 +74,12 @@ const ProfilePage = () => {
       <div className="card__content">
         <DisplayProfileInfo profileData={profileData} onEdit={handleEdit} />
       </div>
+      <button
+        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+        onClick={deleteProfileData}
+      >
+        supprimer mon compte
+      </button>
     </div>
   );
 };
