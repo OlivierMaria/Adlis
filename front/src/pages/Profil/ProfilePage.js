@@ -25,6 +25,7 @@ const ProfilePage = () => {
       );
     }
   };
+
   const handleEdit = async (field, updatedValue, currentPassword) => {
     try {
       switch (field) {
@@ -51,9 +52,9 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-page">
-      <h1>Page de profil</h1>
-      <div className="profile-info">
+    <div className="card">
+      <h1 className="card__title">Votre profil</h1>
+      <div className="card__content">
         <DisplayProfileInfo profileData={profileData} onEdit={handleEdit} />
       </div>
     </div>
