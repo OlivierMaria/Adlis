@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
+
 const SignUpPage = () => {
   const navigate = useNavigate();
 
@@ -22,13 +23,19 @@ const SignUpPage = () => {
             user_id: res.data.user_id,
             username: res.data.username,
             session_id: res.data.session_id,
-            email: res.data.email,
           })
         );
 
         navigate("/");
       })
       .catch((error) => {
+        if (error.response && error.response.status === 422) {
+          // Display an alert for 422 Unprocessable Entity error
+          alert("email déja utilisé");
+        } else {
+          // Display a generic error alert for other errors
+          alert("An error occurred. Please try again later.");
+        }
         console.error(error);
       });
   };
@@ -39,9 +46,9 @@ const SignUpPage = () => {
         username="Pseudo"
         email="Adresse Email"
         password="Mot de passe"
-        passwordConfirmation="confirmation mot de passe"
-        Conditions="conditions generales "
-        button="s'inscrire"
+        passwordConfirmation="Confirmation mot de passe"
+        Conditions="Conditions générales"
+        button="S'inscrire"
         sendData={handleSubmitRequest}
         page="signup"
       />
