@@ -14,6 +14,7 @@ import "./App.css";
 import NewPassword from "./pages/reset_password/NewPassword.js";
 import ProfilePage from "./pages/Profil/ProfilePage.js";
 import Rgpd from "./pages/Rgpd.js";
+import MailConfirmed from "./pages/MailConfirmed.js";
 
 const App = () => {
   const parseUserData = localStorage.getItem("token");
@@ -42,6 +43,7 @@ const App = () => {
         )}
 
         <Route path="*" element={<Home />} />
+        <Route path="confirmed" element={<MailConfirmed />} />
       </Routes>
     </BrowserRouter>
   );
