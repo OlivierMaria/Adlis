@@ -21,6 +21,7 @@ const Dropdown = () => {
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
+          localStorage.clear();
           navigate("/");
         } else {
           console.log(error.response.status);
