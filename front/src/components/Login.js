@@ -17,7 +17,7 @@ const Login = () => {
 
   const handleLogin = () => {
     axios
-      .post("http://127.0.0.1:3000/sign_in", {
+      .post("https://adlis-077af6a0b065.herokuapp.com/sign_in", {
         email: email,
         password: password,
       })

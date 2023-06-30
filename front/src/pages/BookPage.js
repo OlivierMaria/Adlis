@@ -27,7 +27,9 @@ const BookPage = () => {
 
   const fetchReviews = () => {
     axios
-      .get("http://127.0.0.1:3000/book_reviews", { params: { book_id: id } })
+      .get("https://adlis-077af6a0b065.herokuapp.com/book_reviews", {
+        params: { book_id: id },
+      })
       .then((response) => {
         const reviewsData = response.data;
         setReviews(reviewsData);
@@ -50,7 +52,11 @@ const BookPage = () => {
       },
     };
     axios
-      .post("http://127.0.0.1:3000/book_reviews", reviewData, config)
+      .post(
+        "https://adlis-077af6a0b065.herokuapp.com/book_reviews",
+        reviewData,
+        config
+      )
       .then((response) => {
         console.log("Commentaire posté avec succès");
         alert("Commentaire posté avec succès");
@@ -68,7 +74,10 @@ const BookPage = () => {
       },
     };
     axios
-      .delete(`http://127.0.0.1:3000/book_reviews/${id}`, config)
+      .delete(
+        `https://adlis-077af6a0b065.herokuapp.com/book_reviews/${id}`,
+        config
+      )
       .then((response) => {
         console.log("Commentaire supprimé avec succès");
         fetchReviews();

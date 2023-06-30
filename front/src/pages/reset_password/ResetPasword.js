@@ -12,7 +12,10 @@ const ResetPassword = () => {
   };
   const handleResetPassword = (data) => {
     axios
-      .post("http://127.0.0.1:3000/identity/password_reset", data)
+      .post(
+        "https://adlis-077af6a0b065.herokuapp.com/identity/password_reset",
+        data
+      )
       .then((res) => {
         navigate("/signin");
         alert("si l'email est valide et verifié vous receverez un email");

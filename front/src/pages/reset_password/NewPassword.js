@@ -12,7 +12,10 @@ const NewPassword = () => {
     const token = new URLSearchParams(window.location.search).get("sid");
     data.sid = token;
     axios
-      .patch(`http://127.0.0.1:3000/identity/password_reset`, data)
+      .patch(
+        `https://adlis-077af6a0b065.herokuapp.com/identity/password_reset`,
+        data
+      )
       .then((response) => {
         alert("Le mot de passe a été mis à jour avec succès");
         navigate("/signin");

@@ -10,9 +10,12 @@ const Dropdown = () => {
 
   const logOutRequest = () => {
     axios
-      .delete(`http://127.0.0.1:3000/sessions/${userData.session_id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+      .delete(
+        `https://adlis-077af6a0b065.herokuapp.com/sessions/${userData.session_id}`,
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           localStorage.clear();

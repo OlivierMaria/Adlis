@@ -11,7 +11,7 @@ const SignUpPage = () => {
 
   const signUpRequest = (data) => {
     axios
-      .post("http://localhost:3000/sign_up", data)
+      .post("https://adlis-077af6a0b065.herokuapp.com/sign_up", data)
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem("token", token);

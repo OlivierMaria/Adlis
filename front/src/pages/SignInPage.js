@@ -12,7 +12,7 @@ const SignInPage = () => {
 
   const handleSignIn = (data) => {
     axios
-      .post("http://127.0.0.1:3000/sign_in", data)
+      .post("https://adlis-077af6a0b065.herokuapp.com/sign_in", data)
       .then((res) => {
         if (res.status === 201) {
           const token = res.data.token;

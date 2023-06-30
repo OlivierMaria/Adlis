@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
 import React from "react";
-import { FaBook } from "react-icons/fa";
 import logoImg from "../assets/img/logo.png";
 import Dropdown from "./Dropdown.js";
 

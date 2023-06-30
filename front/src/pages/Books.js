@@ -13,11 +13,14 @@ const Books = () => {
   useEffect(() => {
     const fetchFavoriteBooks = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:3000/books", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://adlis-077af6a0b065.herokuapp.com/books",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const favoriteBooksData = response.data;
         setFavoriteBooks(favoriteBooksData);
       } catch (error) {
@@ -52,11 +55,15 @@ const Books = () => {
 
   const handleFavorite = async (book) => {
     try {
-      const response = await axios.post("http://127.0.0.1:3000/books", { book_id: book.id }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        "https://adlis-077af6a0b065.herokuapp.com/books",
+        { book_id: book.id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Ajout du livre aux favoris :", response.data);
     } catch (error) {
       console.error("Erreur lors de l'ajout du livre :", error);
@@ -71,12 +78,3 @@ const Books = () => {
 };
 
 export default Books;
-
-
-
-
-
-
-
-
-

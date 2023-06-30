@@ -8,7 +8,7 @@ const ProfileRequest = {
       const userData = JSON.parse(userDataItems);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:3000/sessions/${userData.session_id}`,
+        `https://adlis-077af6a0b065.herokuapp.com/sessions/${userData.session_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ const ProfileRequest = {
       const token = localStorage.getItem("token");
       console.log(" current" + currentPassword + " updated", newPassword);
       await axios.put(
-        `http://localhost:3000/password`,
+        `https://adlis-077af6a0b065.herokuapp.com/password`,
         {
           current_password: currentPassword,
           password: newPassword,
@@ -55,7 +55,7 @@ const ProfileRequest = {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3000//identity/email`,
+        `https://adlis-077af6a0b065.herokuapp.com/identity/email`,
         {
           email: newEmail,
         },
@@ -79,7 +79,7 @@ const ProfileRequest = {
       const userData = JSON.parse(userDataItems);
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3000/users/${userData.user_id}`,
+        `https://adlis-077af6a0b065.herokuapp.com/users/${userData.user_id}`,
         { username: newUsername },
         {
           headers: {
