@@ -17,7 +17,9 @@ const Footer = () => {
         <div className="link">
           <a href="/rgpd">Lien vers RGPD</a>
           <span>|</span>
-          <a href="/api">Lien vers l'API</a>
+          <a href="https://developers.google.com/books?hl=fr" target="_blank">
+            Lien vers l'API
+          </a>
         </div>
       </footer>
     </>
