@@ -13,6 +13,7 @@ import BookCategory from "./pages/BookCategory.js";
 import "./App.css";
 import NewPassword from "./pages/reset_password/NewPassword.js";
 import ProfilePage from "./pages/Profil/ProfilePage.js";
+import Rgpd from "./pages/Rgpd.js";
 
 const App = () => {
   const parseUserData = localStorage.getItem("token");
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="books" element={<Books />} />
         <Route path="/list/:category" element={<BookCategory />} />
         <Route path="books/:id" element={<BookPage />} />
+        <Route path="rgpd" element={<Rgpd />} />
         {currentUser === null ? (
           <>
             <Route path="/signup" element={<SignUpPage />} />
