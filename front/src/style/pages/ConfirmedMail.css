@@ -1,0 +1,24 @@
+.confirmation-page {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.confirmation-page h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.confirmation-page p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.confirmation-page a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.confirmation-page a:hover {
+  text-decoration: underline;
+}
