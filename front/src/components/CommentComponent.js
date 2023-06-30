@@ -1,10 +1,15 @@
 import { useForm } from "react-hook-form";
+import "../style/components/Comment.css";
+import { FaArrowUp } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import Footer from "./Footer.js";
 
 const CommentComponent = (props) => {
   const { handleReview, handleDelete } = props;
   const userParse = JSON.parse(localStorage.getItem("userData"));
   const currentUser = localStorage.getItem("token");
   const userId = userParse ? userParse.user_id : null;
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const {
     register,
@@ -39,51 +44,87 @@ const CommentComponent = (props) => {
     }
   };
 
+  const handleScroll = () => {
+    if (window.pageYOffset > 300) {
+      setShowBackToTop(true);
+    } else {
+      setShowBackToTop(false);
+    }
+  };
+
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div>
-      <h2>Critiques</h2>
-      <form onSubmit={handleSubmit(handleSubmitData)}>
-        <input
-          type="text"
-          {...register("review", validOptions.review)}
-          placeholder="Entrez votre critique"
-        />
-        {errors.user && (
-          <small className="text-danger">{errors.user.message}</small>
-        )}
-        {errors.review && (
-          <small className="text-danger">{errors.review.message}</small>
-        )}
+    <>
+      <div className="comment-container">
+        <h2>Critiques</h2>
+        <form
+          className="comment-form"
+          onSubmit={handleSubmit(handleSubmitData)}
+        >
+          <input
+            type="text"
+            {...register("review", validOptions.review)}
+            placeholder="Entrez votre critique"
+            max="250"
+            min="2"
+          />
+          {errors.user && (
+            <small className="text-danger">{errors.user.message}</small>
+          )}
+          {errors.review && (
+            <small className="text-danger">{errors.review.message}</small>
+          )}
 
-        <button type="submit">Publier</button>
-      </form>
-      <br />
+          <button type="submit">Publier</button>
+        </form>
+        <br />
 
-      <h1>Critiques recentes</h1>
-      <br />
-      <ul>
-        {props.reviews !== null ? (
-          props.reviews.map((item, index) => (
-            <li key={index}>
-              <strong>{item[2]} :</strong> {item[3]}
-              {userId !== null && userId === item[1] && (
-                <button
-                  onClick={() => handleDelete(item[0])}
-                  style={{ color: "red" }}
-                >
-                  Delete
-                </button>
-              )}
+        <h1>Critiques récentes</h1>
+        <br />
+        <ul className="comment-list">
+          {props.reviews !== null ? (
+            props.reviews.map((item, index) => (
+              <li key={index}>
+                <strong>{item[2]} :</strong> {item[3]}
+                {userId !== null && userId === item[1] && (
+                  <button
+                    onClick={() => handleDelete(item[0])}
+                    style={{ color: "red" }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </li>
+            ))
+          ) : (
+            <li className="no-comments">
+              Aucune critique pour le moment. Soyez le premier à écrire une
+              critique !
             </li>
-          ))
-        ) : (
-          <li>
-            Aucune critique pour le moment. Soyez le premier à écrire une
-            critique !
-          </li>
+          )}
+        </ul>
+        {showBackToTop && (
+          <button
+            className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 text-white bg-gray-800 rounded-full shadow-lg focus:outline-none"
+            onClick={handleBackToTop}
+            aria-label="Back to top"
+          >
+            <FaArrowUp />
+          </button>
         )}
-      </ul>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 };
 

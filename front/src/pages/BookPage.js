@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import defaultImage from "../assets/img/Nopicture.jpg";
+import defaultImage from "../assets/img/Nopicture.webp";
 import CommentComponent from "../components/CommentComponent.js";
 
 const BookPage = () => {

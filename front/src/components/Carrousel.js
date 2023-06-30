@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../style/Carrousel.css";
-import img1 from "../assets/img/image1.jpg";
-import img2 from "../assets/img/image2.jpg";
-import img3 from "../assets/img/image3.jpg";
+import img1 from "../assets/img/image1.webp";
+import img2 from "../assets/img/image2.webp";
+import img3 from "../assets/img/image3.webp";
 
 const images = [img1, img2, img3];
 

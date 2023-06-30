@@ -13,6 +13,8 @@ const SearchBar = ({ onSearch }) => {
       <label htmlFor="search"></label>
       <input
         id="search"
+        min="2"
+        max="10"
         type="text"
         required
         role="searchbox"

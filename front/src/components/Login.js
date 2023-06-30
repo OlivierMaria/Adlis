@@ -41,6 +41,7 @@ const Login = () => {
       <div>
         <label htmlFor="email">Email:</label>
         <input
+          max="40"
           type="email"
           id="email"
           value={email}
@@ -51,6 +52,7 @@ const Login = () => {
       <div>
         <label htmlFor="password">Mot de passe:</label>
         <input
+          max="40"
           type="password"
           id="password"
           value={password}

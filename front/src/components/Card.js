@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "../style/Card.css";
-import defaultImage from "../assets/img/Nopicture.jpg";
+import defaultImage from "../assets/img/Nopicture.webp";
 import { FaEye } from "react-icons/fa";
 
 AOS.init(); // Initialisez AOS dans votre composant
