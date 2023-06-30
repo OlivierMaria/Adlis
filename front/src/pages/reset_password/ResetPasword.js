@@ -22,10 +22,10 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h2 className="form-title">Récupération de mot de passe</h2>
-        <p className="form-description">
+    <div>
+      <div>
+        <h2>Récupération de mot de passe</h2>
+        <p>
           Si vous êtes déjà enregistré chez nous, vous recevrez un email avec
           les instructions pour réinitialiser votre mot de passe.
         </p>

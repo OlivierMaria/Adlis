@@ -4,7 +4,7 @@ const CommentComponent = (props) => {
   const { handleReview, handleDelete } = props;
   const userParse = JSON.parse(localStorage.getItem("userData"));
   const currentUser = localStorage.getItem("token");
-  const userId = userParse.user_id;
+  const userId = userParse ? userParse.user_id : null;
 
   const {
     register,

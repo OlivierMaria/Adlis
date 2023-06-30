@@ -68,7 +68,7 @@ const BookPage = () => {
       .post("http://127.0.0.1:3000/book_reviews", data, config)
       .then((response) => {
         console.log("Commentaire posté avec succès");
-        // alert("Commentaire posté avec succès");
+        alert("Commentaire posté avec succès");
         fetchReviews();
       })
       .catch((error) => {
