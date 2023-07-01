@@ -204,7 +204,7 @@ const Rgpd = () => {
           </p>
         </section>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -77,7 +77,7 @@ const Home = () => {
   }, [searchTerm]);
 
   const handleSearch = (searchTerm) => {
-    if (searchTerm.length >= 0) {
+    if (searchTerm.length > 0) {
       setSearchTerm(searchTerm);
     }
   };
@@ -113,7 +113,7 @@ const Home = () => {
             </div>
             <div className="row">
               {searchResults.map((book) => (
-                <Card key={book.id} book={book.volumeInfo} />
+                <Card key={book.id} book={book.volumeInfo} bookId={book.id} />
               ))}
             </div>
           </div>
@@ -156,7 +156,6 @@ const Home = () => {
           </button>
         )}
       </div>
-      <Footer />
     </>
   );
 };

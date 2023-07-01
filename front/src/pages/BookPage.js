@@ -8,10 +8,12 @@ const BookPage = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [reviews, setReviews] = useState(null);
-  // const [booksFavorite, setBooksFavorite] = useState(null);
-  // const [isBookAdded, setIsBookAdded] = useState(null);
+  const [booksFavorite, setBooksFavorite] = useState(null);
+  const [isBookAdded, setIsBookAdded] = useState(null);
   const token = localStorage.getItem("token");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  // Fetches book details from the Google Books API
   const fetchBook = () => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
@@ -25,6 +27,7 @@ const BookPage = () => {
       });
   };
 
+  // Fetches reviews for the book from the custom book reviews API
   const fetchReviews = () => {
     axios
       .get("https://adlis-077af6a0b065.herokuapp.com/book_reviews", {
@@ -41,7 +44,8 @@ const BookPage = () => {
       });
   };
 
-  const reviewPost = (data) => {
+  // Posts a review for the book to the custom book reviews API
+  const postReview = (data) => {
     const reviewData = {
       review: data,
       book_id: id,
@@ -58,16 +62,17 @@ const BookPage = () => {
         config
       )
       .then((response) => {
-        console.log("Commentaire posté avec succès");
-        alert("Commentaire posté avec succès");
+        console.log("Review posted successfully");
+        alert("Review posted successfully");
         fetchReviews();
       })
       .catch((error) => {
-        console.error("Erreur lors de la publication du commentaire :", error);
+        console.error("Error posting review:", error);
       });
   };
 
-  const reviewDelete = (id) => {
+  // Deletes a review for the book from the custom book reviews API
+  const deleteReview = (id) => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -79,89 +84,97 @@ const BookPage = () => {
         config
       )
       .then((response) => {
-        console.log("Commentaire supprimé avec succès");
+        console.log("Review deleted successfully");
         fetchReviews();
       })
       .catch((error) => {
-        console.error("Erreur lors de la suppression du commentaire :", error);
+        console.error("Error deleting review:", error);
       });
   };
 
-  // const FetchBooksFavorite = () => {
-  //   const config = {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   };
-  //   axios
-  //     .get(`http://127.0.0.1:3000/books`, config)
-  //     .then((response) => {
-  //       setBooksFavorite(response.data);
-  //       console.log("Commentaire supprimé avec succès");
-  //       fetchReviews();
-  //     })
-  //     .catch((error) => {
-  //       console.error("Erreur lors de la suppression du commentaire :", error);
-  //     });
-  // };
+  // Fetches the user's favorite books from the local server
+  const fetchBooksFavorite = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .get(`https://adlis-077af6a0b065.herokuapp.com/books`, config)
+      .then((response) => {
+        setBooksFavorite(response.data);
+        console.log("Favorite books retrieved successfully");
+        setIsBookAdded(response.data.includes(id));
+        fetchReviews();
+      })
+      .catch((error) => {
+        console.error("Error retrieving favorite books:", error);
+      });
+  };
 
-  // const handleFavorite = () => {
-  //   if (isBookAdded) {
-  //     const confirmation = window.confirm(
-  //       "Voulez-vous vraiment supprimer ce livre de votre liste ?"
-  //     );
-  //     if (confirmation) {
-  //       const favoriteData = {
-  //         book_id: id,
-  //       };
-  //       axios
-  //         .delete(`http://127.0.0.1:3000/books/${id}`, {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //           data: favoriteData,
-  //         })
-  //         .then((response) => {
-  //           console.log("Livre supprimé avec succès");
-  //           setIsBookAdded(false);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Erreur lors de la suppression du livre :", error);
-  //           localStorage.clear();
-  //         });
-  //     }
-  //   } else {
-  //     const favoriteData = {
-  //       book_id: id,
-  //     };
-  //     axios
-  //       .post("http://127.0.0.1:3000/books", favoriteData, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         console.log("Livre ajouté avec succès");
-  //         setIsBookAdded(true);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Erreur lors de l'ajout du livre :", error);
-  //       });
-  //   }
-  // };
+  // Handles adding or removing the book from the user's favorite list
+  const handleFavorite = () => {
+    if (!token) {
+      setErrorMessage("Veuillez vous connecter avant d'ajouter aux favoris.");
+      return;
+    }
+    if (isBookAdded) {
+      const confirmation = window.confirm(
+        "Êtes-vous sûr(e) de vouloir supprimer ce livre de votre liste ?"
+      );
+      if (confirmation) {
+        const favoriteData = {
+          book_id: id,
+        };
+        axios
+          .delete(`https://adlis-077af6a0b065.herokuapp.com/books/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: favoriteData,
+          })
+          .then((response) => {
+            console.log("Book removed successfully");
+            setIsBookAdded(false);
+            fetchBooksFavorite();
+          })
+          .catch((error) => {
+            console.error("Error removing book:", error);
+            localStorage.clear();
+          });
+      }
+    } else {
+      const favoriteData = {
+        book_id: id,
+      };
+      axios
+        .post("https://adlis-077af6a0b065.herokuapp.com/books", favoriteData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log("Book added successfully");
+          setIsBookAdded(true);
+          fetchBooksFavorite();
+        })
+        .catch((error) => {
+          console.error("Error adding book:", error);
+        });
+    }
+  };
 
   useEffect(() => {
-    // FetchBooksFavorite();
+    if (token) {
+      fetchBooksFavorite();
+    }
     fetchBook();
     fetchReviews();
-  }, []);
+  }, [token]);
 
   if (!book) {
     return <div>Loading...</div>;
   }
-
-  // const isBookInFavorites =
-  //   booksFavorite && booksFavorite.find((favorite) => favorite.book_id === id);
 
   return (
     <>
@@ -177,23 +190,25 @@ const BookPage = () => {
           <h2 className="text-2xl font-semibold mb-2">{book.title}</h2>
           <h2 className="text-lg font-medium mb-2">{book.categories}</h2>
           <h5 className="text-sm text-gray-600">{book.description}</h5>
-          {/* <button
+          <button
             onClick={handleFavorite}
             className={`${
               booksFavorite && booksFavorite.includes(id)
-                ? "bg-black"
-                : "bg-black-300"
-            } hover:bg-black-300 text-white font-semibold py-2 px-4 rounded mb-4 mt-4`}
+                ? "favorite-button-active"
+                : "favorite-button"
+            }`}
           >
             {booksFavorite && booksFavorite.includes(id)
-              ? "dans ma liste"
+              ? "Dans ma liste"
               : "Ajouter à mes livres"}
-          </button> */}
+          </button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
+
       <CommentComponent
-        handleDelete={reviewDelete}
-        handleReview={reviewPost}
+        handleDelete={deleteReview}
+        handleReview={postReview}
         reviews={reviews}
       />
     </>

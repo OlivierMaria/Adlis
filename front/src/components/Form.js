@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "../style/Form.css";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
 
 const Form = (props) => {
   const handleError = (errors) => {};
@@ -186,7 +185,6 @@ const Form = (props) => {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
