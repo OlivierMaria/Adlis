@@ -13,6 +13,7 @@
 @import "./pages/EditProfileForm.css";
 @import "./pages/DisplayProfileInfo.css";
 @import "./pages/ConfirmedMail.css";
+@import "./pages/bookfavorite.css";
 
 body {
   margin: 0;

@@ -15,6 +15,7 @@ import NewPassword from "./pages/reset_password/NewPassword.js";
 import ProfilePage from "./pages/Profil/ProfilePage.js";
 import Rgpd from "./pages/Rgpd.js";
 import MailConfirmed from "./pages/MailConfirmed.js";
+import Footer from "./components/Footer.js";
 
 const App = () => {
   const parseUserData = localStorage.getItem("token");
@@ -27,7 +28,6 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="books" element={<Books />} />
         <Route path="/list/:category" element={<BookCategory />} />
         <Route path="books/:id" element={<BookPage />} />
         <Route path="rgpd" element={<Rgpd />} />
@@ -39,12 +39,16 @@ const App = () => {
             <Route path="/signin" element={<SignInPage />} />
           </>
         ) : (
-          <Route path="/profile" element={<ProfilePage />} />
+          <>
+            <Route path="books" element={<Books />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </>
         )}
 
         <Route path="*" element={<Home />} />
         <Route path="confirmed" element={<MailConfirmed />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

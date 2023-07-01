@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Navbar.css";
-import React from "react";
 import logoImg from "../assets/img/logo.webp";
 import Dropdown from "./Dropdown.js";
 
-//! Navbar Component
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (!token) {
+      setTimeout(() => {
+        alert("Connectez-vous avant de continuer");
+        navigate("/signin");
+      }, 0);
+    }
+  };
+
   return (
     <>
       <nav>
@@ -32,12 +42,15 @@ const Navbar = () => {
         <div className="right-section">
           <ul className="profile-items">
             <li>
-              <Link to="/books">Coup d'❤️</Link>
-            </li>
-            <li>
-              <Dropdown />
+              <Link to="/books" onClick={handleClick}>
+                Coup d'❤️
+              </Link>
             </li>
           </ul>
+
+          <li>
+            <Dropdown />
+          </li>
         </div>
       </nav>
     </>

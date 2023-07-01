@@ -94,12 +94,24 @@ const CommentComponent = (props) => {
         <ul className="comment-list">
           {props.reviews !== null ? (
             props.reviews.map((item, index) => (
-              <li key={index}>
-                <strong>{item[2]} :</strong> {item[3]}
+              <li key={index} className="comment-item">
+                <div className="comment-user">
+                  <span className="comment-username">&bull; {item[2]}</span>
+                  <p
+                    className="comment-content"
+                    style={{
+                      backgroundColor: `rgba(247, 247, 247, ${
+                        item[3].length * 0.01
+                      })`,
+                    }}
+                  >
+                    {item[3]}
+                  </p>
+                </div>
                 {userId !== null && userId === item[1] && (
                   <button
                     onClick={() => handleDelete(item[0])}
-                    style={{ color: "red" }}
+                    className="comment-delete"
                   >
                     Delete
                   </button>
@@ -113,6 +125,7 @@ const CommentComponent = (props) => {
             </li>
           )}
         </ul>
+
         {showBackToTop && (
           <button
             className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 text-white bg-gray-800 rounded-full shadow-lg focus:outline-none"
@@ -123,7 +136,6 @@ const CommentComponent = (props) => {
           </button>
         )}
       </div>
-      <Footer />
     </>
   );
 };

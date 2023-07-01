@@ -101,7 +101,7 @@ const About = () => {
           </button>
         )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
