@@ -106,7 +106,6 @@ const Home = () => {
       <div className="home-container">
         <Carrousel />
         <SearchBar onSearch={handleSearch} />
-        <p>bonjour</p>
         {searchTerm.trim() !== "" && searchResults.length > 0 ? (
           <div className="category-container">
             <div className="category-header">
