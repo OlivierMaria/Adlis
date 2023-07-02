@@ -1,122 +1,101 @@
-/* .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card__title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.card__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card__content__info {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.card__content__info label {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.card__content__info span {
-  font-size: 16px;
-}
-
-.card__content__edit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card__content__edit input {
-  width: 250px;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.card__content__edit button {
-  background-color: #007bff;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.card__content__edit button:hover {
-  background-color: #0056b3;
-}
- */
 .book-details {
   display: flex;
   align-items: center;
   margin-top: 150px;
-  margin-bottom: 100px;
+  margin-bottom: 130px;
 }
 
 .left-column {
-  flex-shrink: 0;
-  margin-right: 70px;
+  flex: 0 0 auto;
+}
+
+.book-image {
+  height: 200px;
+  width: 150px;
   margin-left: 10px;
+  margin-right: 50px;
 }
 
 .right-column {
-  flex-grow: 1;
-  border-left: 2px solid #ccc;
-  padding-left: 70px;
+  flex: 1 1 auto;
+  padding-left: 1rem;
+  border-left: 1px solid gray;
+}
+
+.book-info {
+  margin-left: 1rem;
+}
+
+.book-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.book-categories {
+  font-size: 1.2rem;
+  font-weight: medium;
+  margin-bottom: 0.5rem;
+}
+
+.book-description {
+  font-size: 0.9rem;
+  color: gray;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .favorite-button {
-  background-color: rgb(164, 161, 161);
-  color: white;
-  font-weight: bold;
+  background-color: #e2e8f0;
+  border: none;
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
   margin-top: 1rem;
-}
-
-.favorite-button:hover {
-  background-color: rgb(179, 179, 179);
-  color: white;
 }
 
 .favorite-button-active {
-  background-color: rgb(22, 140, 229);
-  color: white;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-.favorite-button-active:hover {
-  background-color: #219efe;
+  background-color: #4299e1;
   color: white;
 }
 
 .error-message {
   color: red;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .book-details {
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .left-column {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .book-image {
+    height: 300px;
+    width: 250px;
+    margin-left: 10px;
+  }
+
+  .right-column {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .book-info {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .book-description {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
 }

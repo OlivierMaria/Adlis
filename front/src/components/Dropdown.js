@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Dropdown = () => {
@@ -7,15 +8,19 @@ const Dropdown = () => {
   const userData = JSON.parse(userDataitems);
   const token = localStorage.getItem("token");
   const currentUser = userData;
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Toggle the dropdown menu
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Send logout request and clear local storage
   const logOutRequest = () => {
     axios
-      .delete(
-        `https://adlis-077af6a0b065.herokuapp.com/sessions/${userData.session_id}`,
-        {
-          headers: { authorization: `Bearer ${token}` },
-        }
-      )
+      .delete(`http://localhost:3000/${userData.session_id}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         if (res.status === 200) {
           localStorage.clear();
@@ -34,8 +39,10 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown">
-      <button>Mon profil</button>
-      <div className="dropdown-options">
+      <button className="button-primary" onClick={toggleDropdown}>
+        Mon profil
+      </button>
+      <div className={`dropdown-options ${isOpen ? "open" : ""}`}>
         {currentUser === null ? (
           <>
             <Link to="/signin">Connexion</Link>
@@ -44,7 +51,7 @@ const Dropdown = () => {
         ) : (
           <>
             <Link to="/profile">Profil</Link>
-            <button onClick={logOutRequest}>Deconnexion</button>
+            <button onClick={logOutRequest}>Déconnexion</button>
           </>
         )}
       </div>

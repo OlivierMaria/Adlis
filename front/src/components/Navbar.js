@@ -7,6 +7,7 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
+  // Handles the click event on the "Coup d'❤️" link
   const handleClick = () => {
     if (!token) {
       setTimeout(() => {
@@ -31,7 +32,7 @@ const Navbar = () => {
             </li>
             <li>|</li>
             <li>
-              <Link to="/about">A propos</Link>
+              <Link to="/about">À propos</Link>
             </li>
             <li>|</li>
             <li>
@@ -47,10 +48,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-
-          <li>
-            <Dropdown />
-          </li>
+          <Dropdown />
         </div>
       </nav>
     </>

@@ -1,29 +1,26 @@
 import axios from "axios";
 
 const ProfileRequest = {
+  // Deletes the user's account
   deleteAccount: async () => {
     try {
       const confirmDelete = window.confirm(
         "Voulez-vous vraiment supprimer votre compte ?"
       );
-      if (!confirmDelete) {
-        return;
-      }
-
-      const userDataItems = localStorage.getItem("userData");
-      const userData = JSON.parse(userDataItems);
-      const token = localStorage.getItem("token");
-      await axios.delete(
-        `https://adlis-077af6a0b065.herokuapp.com/users/${userData.user_id}`,
-        {
+      if (confirmDelete) {
+        const userDataItems = localStorage.getItem("userData");
+        const userData = JSON.parse(userDataItems);
+        const token = localStorage.getItem("token");
+        await axios.delete(`http://localhost:3000/users/${userData.user_id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      console.log("Compte utilisateur supprimé avec succès");
-      alert("Compte utilisateur supprimé avec succès");
-      localStorage.clear();
+        });
+        alert("Compte utilisateur supprimé avec succès");
+        localStorage.clear();
+      } else {
+        // Ne rien faire ici
+      }
     } catch (error) {
       console.error(
         "Erreur lors de la suppression du compte utilisateur :",
@@ -33,13 +30,14 @@ const ProfileRequest = {
     }
   },
 
+  // Fetches the profile data from the server
   fetchProfileData: async () => {
     try {
       const userDataItems = localStorage.getItem("userData");
       const userData = JSON.parse(userDataItems);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://adlis-077af6a0b065.herokuapp.com/sessions/${userData.session_id}`,
+        `http://localhost:3000/sessions/${userData.session_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,20 +46,18 @@ const ProfileRequest = {
       );
       return response.data;
     } catch (error) {
-      console.error(
-        "Erreur lors de la récupération des données du profil :",
-        error
-      );
+      console.error("Error fetching profile data:", error);
       throw error;
     }
   },
 
+  // Updates the user's password
   updatePassword: async (currentPassword, newPassword) => {
     try {
       const token = localStorage.getItem("token");
       console.log(" current" + currentPassword + " updated", newPassword);
       await axios.put(
-        `https://adlis-077af6a0b065.herokuapp.com/password`,
+        `http://localhost:3000/password`,
         {
           current_password: currentPassword,
           password: newPassword,
@@ -73,20 +69,20 @@ const ProfileRequest = {
           },
         }
       );
-      console.log("Mot de passe mis à jour avec succès");
-      alert("mise a jour avec succes, vous devriez vous reconneceter");
+      alert("Mise à jour réussie, vous devriez vous reconnecter");
       localStorage.clear();
     } catch (error) {
-      alert("mot de passe actuel n'est pas valid");
+      alert("Le mot de passe actuel n'est pas valide");
       throw error;
     }
   },
 
+  // Updates the user's email
   updateEmail: async (newEmail) => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://adlis-077af6a0b065.herokuapp.com/identity/email`,
+        `http://localhost:3000/identity/email`,
         {
           email: newEmail,
         },
@@ -96,21 +92,22 @@ const ProfileRequest = {
           },
         }
       );
-      console.log("Email mis à jour avec succès");
+      alert("L'adresse e-mail est mise a jour");
     } catch (error) {
-      alert("adresse mail déja utilisée");
-      console.error("Erreur lors de la mise à jour de l'email :", error);
+      alert("L'adresse e-mail est déjà utilisée");
+      console.error("Error updating email:", error);
       throw error;
     }
   },
 
+  // Updates the user's username
   updateUsername: async (newUsername) => {
     try {
       const userDataItems = localStorage.getItem("userData");
       const userData = JSON.parse(userDataItems);
       const token = localStorage.getItem("token");
       await axios.put(
-        `https://adlis-077af6a0b065.herokuapp.com/users/${userData.user_id}`,
+        `http://localhost:3000/users/${userData.user_id}`,
         { username: newUsername },
         {
           headers: {
@@ -118,14 +115,11 @@ const ProfileRequest = {
           },
         }
       );
-      console.log("Nom d'utilisateur mis à jour avec succès");
+      console.log("Username updated successfully");
       alert("Nom d'utilisateur mis à jour avec succès");
     } catch (error) {
       alert(error);
-      console.error(
-        "Erreur lors de la mise à jour du nom d'utilisateur :",
-        error
-      );
+      console.error("Error updating username:", error);
       throw error;
     }
   },

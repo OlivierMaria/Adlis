@@ -10,16 +10,19 @@ import Carrousel from "../components/Carrousel.js";
 import Footer from "../components/Footer.js";
 
 const Home = () => {
+  // State variables
   const [categories, setCategories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  // Constants
   const apiKey = process.env.REACT_APP_MY_KEY;
   const maxResults = 5;
   const searchMaxResults = 40;
   const navigate = useNavigate();
 
+  // Fetch categories from Google Books API
   const fetchCategories = async () => {
     try {
       const categories = [
@@ -56,6 +59,7 @@ const Home = () => {
     fetchCategories();
   }, []);
 
+  // Fetch search results based on the search term
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchTerm.trim() !== "") {
@@ -76,12 +80,14 @@ const Home = () => {
     fetchSearchResults();
   }, [searchTerm]);
 
+  // Handle search term input
   const handleSearch = (searchTerm) => {
     if (searchTerm.length > 0) {
       setSearchTerm(searchTerm);
     }
   };
 
+  // Handle scroll event to show or hide the "Back to Top" button
   const handleScroll = () => {
     if (window.pageYOffset > 300) {
       setShowBackToTop(true);
@@ -90,6 +96,7 @@ const Home = () => {
     }
   };
 
+  // Scroll to the top of the page
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -109,7 +116,7 @@ const Home = () => {
         {searchTerm.trim() !== "" && searchResults.length > 0 ? (
           <div className="category-container">
             <div className="category-header">
-              <h2>Résultats de recherche pour "{searchTerm}"</h2>
+              <h2>Search results for "{searchTerm}"</h2>
             </div>
             <div className="row">
               {searchResults.map((book) => (
@@ -124,8 +131,8 @@ const Home = () => {
               className="category-container"
             >
               <div className="category-header flex justify-between items-center mt-5">
-                <h2 className="text-left">
-                  Catégories {categoryData.category.name}
+                <h2 className="text-left ml-2">
+                  Category {categoryData.category.name}
                 </h2>
                 <div className="barre"></div>
                 <button
@@ -134,7 +141,7 @@ const Home = () => {
                     navigate(`/list/${categoryData.category.searchTerm}`)
                   }
                 >
-                  Voir plus
+                  Voir Plus
                 </button>
               </div>
               <div className="row">

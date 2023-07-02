@@ -14,7 +14,7 @@ const Books = () => {
       },
     };
     axios
-      .get(`https://adlis-077af6a0b065.herokuapp.com/books`, config)
+      .get(`http://localhost:3000/books`, config)
       .then((response) => {
         setBooksFavorite(response.data);
         console.log("Favorite books retrieved successfully");
@@ -60,7 +60,7 @@ const Books = () => {
       book_id: id,
     };
     axios
-      .delete(`https://adlis-077af6a0b065.herokuapp.com/books/${id}`, {
+      .delete(`http://localhost:3000/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
