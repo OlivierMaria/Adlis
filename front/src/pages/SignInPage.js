@@ -6,13 +6,15 @@ import Form from "../components/Form";
 const SignInPage = () => {
   const navigate = useNavigate();
 
+  // Handles the form submission
   const handleSubmitRequest = (data) => {
     handleSignIn(data);
   };
 
+  // Sends sign-in request to the server
   const handleSignIn = (data) => {
     axios
-      .post("https://adlis-077af6a0b065.herokuapp.com/sign_in", data)
+      .post("http://localhost:3000/sign_in", data)
       .then((res) => {
         if (res.status === 201) {
           const token = res.data.token;
@@ -41,7 +43,7 @@ const SignInPage = () => {
       <Form
         email="Adresse Email"
         password="Mot de passe"
-        button="se connecter"
+        button="Se connecter"
         sendData={handleSubmitRequest}
         page="signin"
       />

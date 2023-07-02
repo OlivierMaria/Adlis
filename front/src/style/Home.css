@@ -1,44 +1,65 @@
 .centered-input input {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 30px;
-    font-size: 16px;
-    text-align: center;
-    outline: none;
-    margin-right: 400px;
-  }
-  
-  .centered-input button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .centered-input input:focus {
-    border-color: #007bff;
-  }
-  
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  margin-right: 400px;
+}
+
+.centered-input button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.centered-input input:focus {
+  border-color: #007bff;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  margin-left: 5rem;
+}
+
+.row > * {
+  flex-basis: 16.666%;
+}
+
+.row p {
+  text-align: center;
+}
+
+.barre {
+  width: 70%;
+  height: 1px;
+  background-color: #000;
+}
+
+@media screen and (max-width: 468px) {
   .row {
-    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    overflow: auto;
+    margin-left: 0;
   }
-  
+
   .row > * {
-    flex-basis: 16.666%;
+    flex-basis: 100%;
   }
-
-  .row p {
-    text-align: center;
-  }
-
   .barre {
-    width: 70%;
+    width: 20%;
     height: 1px;
     background-color: #000;
   }
+  .category-header {
+    background-color: #f6f3f3;
+  }
+}

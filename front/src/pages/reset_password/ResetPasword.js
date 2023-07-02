@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 
@@ -8,10 +7,12 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
+  // Handle form submission
   const handleSubmitRequest = (data) => {
     handleResetPassword(data);
   };
 
+  // Handle password reset
   const handleResetPassword = (data) => {
     axios
       .post(
@@ -20,6 +21,7 @@ const ResetPassword = () => {
       )
       .then((res) => {
         navigate("/signin");
+        // If the email is valid and verified, a password reset email will be sent
         alert("Si l'e-mail est valide et vérifié, vous recevrez un e-mail.");
       })
       .catch((error) => {

@@ -30,7 +30,7 @@ const BookPage = () => {
   // Fetches reviews for the book from the custom book reviews API
   const fetchReviews = () => {
     axios
-      .get("https://adlis-077af6a0b065.herokuapp.com/book_reviews", {
+      .get("http://localhost:3000/book_reviews", {
         params: { book_id: id },
       })
       .then((response) => {
@@ -56,11 +56,7 @@ const BookPage = () => {
       },
     };
     axios
-      .post(
-        "https://adlis-077af6a0b065.herokuapp.com/book_reviews",
-        reviewData,
-        config
-      )
+      .post("http://localhost:3000/book_reviews", reviewData, config)
       .then((response) => {
         console.log("Review posted successfully");
         alert("Review posted successfully");
@@ -79,10 +75,7 @@ const BookPage = () => {
       },
     };
     axios
-      .delete(
-        `https://adlis-077af6a0b065.herokuapp.com/book_reviews/${id}`,
-        config
-      )
+      .delete(`http://localhost:3000/book_reviews/${id}`, config)
       .then((response) => {
         console.log("Review deleted successfully");
         fetchReviews();
@@ -100,7 +93,7 @@ const BookPage = () => {
       },
     };
     axios
-      .get(`https://adlis-077af6a0b065.herokuapp.com/books`, config)
+      .get(`http://localhost:3000/books`, config)
       .then((response) => {
         setBooksFavorite(response.data);
         console.log("Favorite books retrieved successfully");
@@ -127,7 +120,7 @@ const BookPage = () => {
           book_id: id,
         };
         axios
-          .delete(`https://adlis-077af6a0b065.herokuapp.com/books/${id}`, {
+          .delete(`http://localhost:3000/books/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -148,7 +141,7 @@ const BookPage = () => {
         book_id: id,
       };
       axios
-        .post("https://adlis-077af6a0b065.herokuapp.com/books", favoriteData, {
+        .post("http://localhost:3000/books", favoriteData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -183,26 +176,28 @@ const BookPage = () => {
           <img
             src={book?.imageLinks?.smallThumbnail || defaultImage}
             alt={book?.title}
-            className="h-60 w-50"
+            className="book-image"
           />
         </div>
         <div className="right-column">
-          <h2 className="text-2xl font-semibold mb-2">{book.title}</h2>
-          <h2 className="text-lg font-medium mb-2">{book.categories}</h2>
-          <h5 className="text-sm text-gray-600">{book.description}</h5>
-          <button
-            onClick={handleFavorite}
-            className={`${
-              booksFavorite && booksFavorite.includes(id)
-                ? "favorite-button-active"
-                : "favorite-button"
-            }`}
-          >
-            {booksFavorite && booksFavorite.includes(id)
-              ? "Dans ma liste"
-              : "Ajouter à mes livres"}
-          </button>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <div className="book-info">
+            <h2 className="book-title">{book.title}</h2>
+            <h2 className="book-categories">{book.categories}</h2>
+            <h5 className="book-description">{book.description}</h5>
+            <button
+              onClick={handleFavorite}
+              className={`favorite-button ${
+                booksFavorite && booksFavorite.includes(id)
+                  ? "favorite-button-active"
+                  : ""
+              }`}
+            >
+              {booksFavorite && booksFavorite.includes(id)
+                ? "Dans ma liste"
+                : "Ajouter à mes livres"}
+            </button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+          </div>
         </div>
       </div>
 

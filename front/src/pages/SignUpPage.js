@@ -6,13 +6,15 @@ import Form from "../components/Form";
 const SignUpPage = () => {
   const navigate = useNavigate();
 
+  // Handles the form submission
   const handleSubmitRequest = (data) => {
     signUpRequest(data);
   };
 
+  // Sends sign-up request to the server
   const signUpRequest = (data) => {
     axios
-      .post("https://adlis-077af6a0b065.herokuapp.com/sign_up", data)
+      .post("http://localhost:3000/sign_up", data)
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem("token", token);
@@ -31,10 +33,12 @@ const SignUpPage = () => {
       .catch((error) => {
         if (error.response && error.response.status === 422) {
           // Display an alert for 422 Unprocessable Entity error
-          alert("email déja utilisé");
+          alert("Email déjà utilisé.");
         } else {
           // Display a generic error alert for other errors
-          alert("An error occurred. Please try again later.");
+          alert(
+            "Une erreur s'est produite. Veuillez réessayer ultérieurement."
+          );
         }
         console.error(error);
       });
@@ -46,7 +50,7 @@ const SignUpPage = () => {
         username="Pseudo"
         email="Adresse Email"
         password="Mot de passe"
-        passwordConfirmation="Confirmation mot de passe"
+        passwordConfirmation="Confirmer le mot de passe"
         Conditions="Conditions générales"
         button="S'inscrire"
         sendData={handleSubmitRequest}

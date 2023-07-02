@@ -4,14 +4,17 @@ import EditProfileForm from "./EditProfileInfo";
 const DisplayProfileInfo = ({ profileData, onEdit }) => {
   const [activeField, setActiveField] = useState(null);
 
+  // Handles the click event when editing a field
   const handleEditField = (field) => {
     setActiveField(field);
   };
 
+  // Handles the cancel edit event
   const handleCancelEdit = () => {
     setActiveField(null);
   };
 
+  // Handles the save edit event
   const handleSaveEdit = (field, updatedValue, currentPassword) => {
     onEdit(field, updatedValue, currentPassword);
     setActiveField(null);

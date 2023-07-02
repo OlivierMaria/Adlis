@@ -9,12 +9,14 @@ const images = [img1, img2, img3];
 const Carrousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Function to handle the next slide
   const handleNextSlide = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
+  // Function to handle the previous slide
   const handlePreviousSlide = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1

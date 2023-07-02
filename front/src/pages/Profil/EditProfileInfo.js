@@ -1,139 +1,73 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import EditProfileForm from "./EditProfileInfo";
 
-const EditProfileForm = ({ field, onSave, onCancel }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
+const DisplayProfileInfo = ({ profileData, onEdit }) => {
+  const [activeField, setActiveField] = useState(null);
 
-  const handleSaveClick = (data) => {
-    onSave(field, data.updatedValue, data.current_password);
+  // Handle the edit field click event
+  const handleEditField = (field) => {
+    setActiveField(field);
   };
 
-  const validationOptions = {
-    username: {
-      required: "Pseudo requis",
-    },
-    email: {
-      required: "Email requis",
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: "L'adresse email n'est pas valide",
-      },
-    },
-    email_confirmation: {
-      validate: (value) =>
-        value === watch("updatedValue") || "Les valeurs ne correspondent pas",
-    },
-    password: {
-      required: "Mot de passe requis",
-      minLength: {
-        value: 12,
-        message: "Le mot de passe doit comporter au moins 12 caractères",
-      },
-    },
-    current_password: {
-      required: "Mot de passe actuel requis",
-      minLength: {
-        value: 12,
-        message: "Le mot de passe doit comporter au moins 12 caractères",
-      },
-    },
-    password_confirmation: {
-      validate: (value) =>
-        value === watch("updatedValue") || "Les valeurs ne correspondent pas",
-    },
+  // Handle the cancel edit event
+  const handleCancelEdit = () => {
+    setActiveField(null);
+  };
+
+  // Handle the save edit event
+  const handleSaveEdit = (field, updatedValue, currentPassword) => {
+    onEdit(field, updatedValue, currentPassword);
+    setActiveField(null);
   };
 
   return (
-    <form
-      className="edit-profile-form-container"
-      onSubmit={handleSubmit(handleSaveClick)}
-    >
-      {field === "username" && (
-        <>
-          <label>Nouveau pseudo:</label>
-          <input
-            type="text"
-            {...register("updatedValue", validationOptions.username)}
+    <div>
+      <h2>Informations du profil</h2>
+      <p>
+        <strong>Nom d'utilisateur:</strong> {profileData.username}
+        {activeField !== "username" && (
+          <button onClick={() => handleEditField("username")}>Modifier</button>
+        )}
+        {activeField === "username" && (
+          <EditProfileForm
+            field="username"
+            defaultValue={profileData.username}
+            onSave={handleSaveEdit}
+            onCancel={handleCancelEdit}
           />
-          {errors.updatedValue && (
-            <p className="error-message">{errors.updatedValue.message}</p>
-          )}
-        </>
-      )}
-
-      {field === "password" && (
-        <>
-          <label>Mot de passe actuel:</label>
-          <input
-            type="password"
-            {...register(
-              "current_password",
-              validationOptions.current_password
-            )}
+        )}
+      </p>
+      <p>
+        <strong>Email:</strong> {profileData.email}
+        {activeField !== "email" && (
+          <button onClick={() => handleEditField("email")}>Modifier</button>
+        )}
+        {activeField === "email" && (
+          <EditProfileForm
+            field="email"
+            defaultValue={profileData.email}
+            onSave={handleSaveEdit}
+            onCancel={handleCancelEdit}
           />
-          {errors.current_password && (
-            <p className="error-message">{errors.current_password.message}</p>
-          )}
-
-          <label>Nouveau mot de passe:</label>
-          <input
-            type="password"
-            {...register("updatedValue", validationOptions.password)}
+        )}
+      </p>
+      <p>
+        <strong>Mot de passe:</strong>
+        {activeField !== "password" && (
+          <button onClick={() => handleEditField("password")}>Modifier</button>
+        )}
+        {activeField === "password" && (
+          <EditProfileForm
+            field="password"
+            defaultValue="*************"
+            onSave={handleSaveEdit}
+            onCancel={handleCancelEdit}
+            requireCurrentPassword
           />
-          {errors.updatedValue && (
-            <p className="error-message">{errors.updatedValue.message}</p>
-          )}
-
-          <label>Confirmer le nouveau mot de passe:</label>
-          <input
-            type="password"
-            {...register(
-              "password_confirmation",
-              validationOptions.password_confirmation
-            )}
-          />
-          {errors.password_confirmation && (
-            <p className="error-message">
-              {errors.password_confirmation.message}
-            </p>
-          )}
-        </>
-      )}
-
-      {field === "email" && (
-        <>
-          <label>Nouvel email:</label>
-          <input
-            type="text"
-            {...register("updatedValue", validationOptions.email)}
-          />
-          {errors.updatedValue && (
-            <p className="error-message">{errors.updatedValue.message}</p>
-          )}
-
-          <label>Confirmer le nouvel email:</label>
-          <input
-            type="text"
-            {...register(
-              "email_confirmation",
-              validationOptions.email_confirmation
-            )}
-          />
-          {errors.email_confirmation && (
-            <p className="error-message">{errors.email_confirmation.message}</p>
-          )}
-        </>
-      )}
-
-      <button type="submit">Enregistrer</button>
-      <button onClick={onCancel}>Annuler</button>
-    </form>
+        )}
+      </p>
+    </div>
   );
 };
 
-export default EditProfileForm;
+export default DisplayProfileInfo;

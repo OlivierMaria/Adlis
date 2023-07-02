@@ -12,7 +12,7 @@ const MailConfirmed = () => {
       const fetchConfirmationStatus = async () => {
         try {
           const response = await axios.get(
-            `https://adlis-077af6a0b065.herokuapp.com/identity/email_verification?sid=${sid}`
+            `http://localhost:3000/identity/email_verification?sid=${sid}`
           );
           const confirmationData = response.data; // Les données renvoyées par le contrôleur Rails
           setConfirmationStatus(confirmationData.status); // Met à jour l'état de confirmationStatus

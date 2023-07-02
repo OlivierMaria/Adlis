@@ -72,3 +72,18 @@
 .no-comments {
   font-style: italic;
 }
+
+@media screen and (max-width: 768px) {
+  .comment-container {
+    margin: 20px;
+    text-align: center;
+  }
+
+  .comment-form input[type="text"] {
+    margin-bottom: 1rem;
+  }
+
+  .comment-form button[type="submit"] {
+    margin-bottom: 20px;
+  }
+}

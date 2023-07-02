@@ -1,68 +1,95 @@
 nav {
-    background-color: #f1f1f1;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100px;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .logo-container {
-    margin-right: 20px;
-  }
-  
-  .logo-img {
-height: 50px;
-    width: auto;
-  }
-  
-  .left-section,
-  .center-section,
-  .right-section {
-    display: flex;
-    align-items: center;
-  }
-  
-  .menu-items,
-  .profile-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu-items li,
-  .profile-items li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  button,
-  a {
-    display: inline-block;
-    background-color: transparent;
-    border: none;
-    padding: 5px 10px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  button:hover,
-  a:hover {
-    color: #666;
-  }
-  
-  .search-container {
-    margin-top: 10px;
-  }
-  
-  .search-container input[type="text"] {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
+  background-color: #f1f1f1;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.logo-container {
+  margin-right: 20px;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.left-section,
+.center-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.menu-items,
+.profile-items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-items li,
+.profile-items li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+button,
+a {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+button:hover,
+a:hover {
+  color: #666;
+}
+
+.search-container {
+  margin-top: 10px;
+}
+
+.search-container input[type="text"] {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  padding: 10px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.profile-items li {
+  font-size: 14px;
+}
+
+.profile-items li:first-child {
+  margin-right: 20px;
+}

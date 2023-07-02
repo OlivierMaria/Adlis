@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Adlis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Adlis is an application that allows users to browse books, add reviews, and mark them as favorites. It has been developed by **Olivier Maria**, **Zitouni Fadili**, and **Faouzi Benidiri**.
 
-## Available Scripts
+## Main Features
 
-In the project directory, you can run:
+- **Browse Books:** The application provides a user-friendly interface to explore a vast collection of books.
+- **Create** an Account: Users can create a personal account to access additional features.
+- **Add Reviews:** Registered users can share their reviews on the books they have read.
+- Mark Books as Favorites: Users can bookmark their favorite books and easily find them in their favorites list.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Backend:** Rails API
+- **Frontend:** React with Tailwind CSS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Additional Features
 
-### `npm test`
+Additional features will be added to the application over time.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Style and Design
 
-### `npm run build`
+The application has been designed with a visually appealing and intuitive user interface. The combination of React and Tailwind CSS ensures a modern and responsive design.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Repository Links
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Backend API Repository:[Link to the Backend repository](https://github.com/faouzi-benidiri/adlis_back)
+- Frontend Repository: **This repository**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running the Application
 
-### `npm run eject`
+To run the Adlis application, please follow the instructions below:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the backend repository and navigate to the project directory.
+2. Install the required dependencies mentioned in the Gemfile by runing `bundle install.`
+3. Set up the PostgreSQL database and ensure that it is running by runing :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `sudo service postgresql start`
+- `rails db:create`
+- `rails db:migrate`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Configure the necessary environment variables (**sendgrid api into .env**)
+5. Start the backend server.
 
-## Learn More
+### Frontend Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the frontend repository and navigate to the project directory.
+2. Install Node.js if not already installed.
+3. Install the required dependencies using the package manager of your choice.
+4. Configure the necessary environment variables **google api**.
+5. Start the frontend development server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Please refer to the README files in the respective repositories for detailed instructions on setting up the backend and frontend environments.
 
-### Code Splitting
+Access the Adlis application by opening your browser and visiting [http://localhost:3000](http://localhost:3000).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: Make sure the backend server is running before starting the frontend server to ensure proper communication between the two.

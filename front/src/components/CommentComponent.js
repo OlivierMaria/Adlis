@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import "../style/components/Comment.css";
 import { FaArrowUp } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-import Footer from "./Footer.js";
 
 const CommentComponent = (props) => {
   const { handleReview, handleDelete } = props;
@@ -32,6 +31,7 @@ const CommentComponent = (props) => {
     },
   };
 
+  // Submit the form data
   const handleSubmitData = (data) => {
     if (currentUser) {
       handleReview(data.review);
@@ -44,6 +44,7 @@ const CommentComponent = (props) => {
     }
   };
 
+  // Handle page scrolling
   const handleScroll = () => {
     if (window.pageYOffset > 300) {
       setShowBackToTop(true);
@@ -52,6 +53,7 @@ const CommentComponent = (props) => {
     }
   };
 
+  // Scroll back to the top of the page
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -113,7 +115,7 @@ const CommentComponent = (props) => {
                     onClick={() => handleDelete(item[0])}
                     className="comment-delete"
                   >
-                    Delete
+                    Supprimer
                   </button>
                 )}
               </li>
@@ -130,7 +132,7 @@ const CommentComponent = (props) => {
           <button
             className="fixed bottom-6 right-6 z-10 flex items-center justify-center w-10 h-10 text-white bg-gray-800 rounded-full shadow-lg focus:outline-none"
             onClick={handleBackToTop}
-            aria-label="Back to top"
+            aria-label="Revenir en haut"
           >
             <FaArrowUp />
           </button>
