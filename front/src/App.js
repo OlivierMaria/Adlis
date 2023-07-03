@@ -24,31 +24,38 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="/list/:category" element={<BookCategory />} />
-        <Route path="books/:id" element={<BookPage />} />
-        <Route path="rgpd" element={<Rgpd />} />
-        {currentUser === null ? (
-          <>
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/resetpassword" element={<ResetPassword />} />
-            <Route path="/resetpassword/:edit" element={<NewPassword />} />
-            <Route path="/signin" element={<SignInPage />} />
-          </>
-        ) : (
-          <>
-            <Route path="books" element={<Books />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </>
-        )}
 
-        <Route path="*" element={<Home />} />
-        <Route path="confirmed" element={<MailConfirmed />} />
-      </Routes>
-      <Footer />
+      <div style={{ minHeight: "calc(100vh - 60px)", position: "relative" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="/list/:category" element={<BookCategory />} />
+          <Route path="books/:id" element={<BookPage />} />
+          <Route path="rgpd" element={<Rgpd />} />
+
+          {currentUser === null ? (
+            <>
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/resetpassword" element={<ResetPassword />} />
+              <Route path="/resetpassword/:edit" element={<NewPassword />} />
+              <Route path="/signin" element={<SignInPage />} />
+            </>
+          ) : (
+            <>
+              <Route path="books" element={<Books />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </>
+          )}
+
+          <Route path="*" element={<Home />} />
+          <Route path="confirmed" element={<MailConfirmed />} />
+        </Routes>
+
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+          <Footer />
+        </div>
+      </div>
     </BrowserRouter>
   );
 };

@@ -14,7 +14,7 @@ const SignUpPage = () => {
   // Sends sign-up request to the server
   const signUpRequest = (data) => {
     axios
-      .post("http://localhost:3000/sign_up", data)
+      .post("http://localhost:3001/sign_up", data)
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem("token", token);

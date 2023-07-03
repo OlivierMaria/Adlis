@@ -14,7 +14,7 @@ const Books = () => {
       },
     };
     axios
-      .get(`http://localhost:3000/books`, config)
+      .get(`http://localhost:3001/books`, config)
       .then((response) => {
         setBooksFavorite(response.data);
         console.log("Favorite books retrieved successfully");
@@ -60,7 +60,7 @@ const Books = () => {
       book_id: id,
     };
     axios
-      .delete(`http://localhost:3000/books/${id}`, {
+      .delete(`http://localhost:3001/books/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

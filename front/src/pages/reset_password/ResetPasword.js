@@ -15,10 +15,7 @@ const ResetPassword = () => {
   // Handle password reset
   const handleResetPassword = (data) => {
     axios
-      .post(
-        "https://adlis-077af6a0b065.herokuapp.com/identity/password_reset",
-        data
-      )
+      .post("http://localhost:3001/identity/password_reset", data)
       .then((res) => {
         navigate("/signin");
         // If the email is valid and verified, a password reset email will be sent
