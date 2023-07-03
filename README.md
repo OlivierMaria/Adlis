@@ -58,4 +58,4 @@ Access the Adlis application by opening your browser and visiting [http://localh
 
 Note: Make sure the backend server is running before starting the frontend server to ensure proper communication between the two.
 
-## production :[adlis.netlify.app](www.adlis.netlify.app)
+## production :https://adlis.netlify.app/
