@@ -14,7 +14,7 @@ const SignInPage = () => {
   // Sends sign-in request to the server
   const handleSignIn = (data) => {
     axios
-      .post("http://localhost:3000/sign_in", data)
+      .post("http://localhost:3001/sign_in", data)
       .then((res) => {
         if (res.status === 201) {
           const token = res.data.token;

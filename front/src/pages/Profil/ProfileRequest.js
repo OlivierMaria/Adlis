@@ -11,7 +11,7 @@ const ProfileRequest = {
         const userDataItems = localStorage.getItem("userData");
         const userData = JSON.parse(userDataItems);
         const token = localStorage.getItem("token");
-        await axios.delete(`http://localhost:3000/users/${userData.user_id}`, {
+        await axios.delete(`http://localhost:3001/users/${userData.user_id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,7 +37,7 @@ const ProfileRequest = {
       const userData = JSON.parse(userDataItems);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `http://localhost:3000/sessions/${userData.session_id}`,
+        `http://localhost:3001/sessions/${userData.session_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const ProfileRequest = {
       const token = localStorage.getItem("token");
       console.log(" current" + currentPassword + " updated", newPassword);
       await axios.put(
-        `http://localhost:3000/password`,
+        `http://localhost:3001/password`,
         {
           current_password: currentPassword,
           password: newPassword,
@@ -82,7 +82,7 @@ const ProfileRequest = {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3000/identity/email`,
+        `http://localhost:3001/identity/email`,
         {
           email: newEmail,
         },

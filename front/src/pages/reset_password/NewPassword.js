@@ -17,10 +17,7 @@ const NewPassword = () => {
     data.sid = token;
 
     axios
-      .patch(
-        `https://adlis-077af6a0b065.herokuapp.com/identity/password_reset`,
-        data
-      )
+      .patch(`http://localhost:3001/identity/password_reset`, data)
       .then((response) => {
         // Password successfully updated
         alert("Le mot de passe a été mis à jour avec succès");

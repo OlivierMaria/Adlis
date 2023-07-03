@@ -18,7 +18,7 @@ const Dropdown = () => {
   // Send logout request and clear local storage
   const logOutRequest = () => {
     axios
-      .delete(`http://localhost:3000/${userData.session_id}`, {
+      .delete(`http://localhost:3001/${userData.session_id}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
