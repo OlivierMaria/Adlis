@@ -57,3 +57,5 @@ Please refer to the README files in the respective repositories for detailed ins
 Access the Adlis application by opening your browser and visiting [http://localhost:3000](http://localhost:3000).
 
 Note: Make sure the backend server is running before starting the frontend server to ensure proper communication between the two.
+
+## production :[adlis.netlify.app](adlis.netlify.app)
